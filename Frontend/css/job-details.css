@@ -54,3 +54,4 @@ html {
 .bookClick{transform:rotate(45deg);
 background-color: rgba(0, 0, 255, 0.249);
 }
+.textDiv{color: rgb(56, 56, 56);}
