@@ -48,3 +48,8 @@ html {
     margin: 5%;
 }
 
+#bookmark{max-width: 5%; display: block; margin-left: auto;}
+
+.bookClick{transform:rotate(45deg);
+background-color: rgba(0, 0, 255, 0.249);
+}
