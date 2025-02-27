@@ -17,10 +17,11 @@ html {
     border-style: solid;
     border-color: rgba(255, 255, 255, 0.548);
     border-radius: 2%;
-    background-color: rgba(255, 255, 255, 0.507); box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.507);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-#applyButton{
+#applyButton {
     border: 0px;
     background-color: rgb(0, 68, 255);
     color: white;
@@ -28,9 +29,11 @@ html {
     border-radius: 5%;
     margin-left: auto;
     margin-right: auto;
-    display: block; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    display: block;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
-#applyButton:hover{
+
+#applyButton:hover {
     border: 0px;
     background-color: rgb(117, 125, 150);
     color: white;
@@ -41,7 +44,7 @@ html {
     display: block;
 }
 
-#innerText{
+#innerText {
     background-color: rgba(255, 255, 255, 0.621);
     border-radius: 5px;
     padding: 5%;
@@ -49,9 +52,17 @@ html {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-#bookmark{max-width: 5%; display: block; margin-left: auto;}
-
-.bookClick{transform:rotate(45deg);
-background-color: rgba(0, 0, 255, 0.249);
+#bookmark {
+    max-width: 5%;
+    display: block;
+    margin-left: auto;
 }
-.textDiv{color: rgb(56, 56, 56);}
+
+.bookClick {
+    transform: rotate(45deg);
+    background-color: rgba(0, 0, 255, 0.249);
+}
+
+.textDiv {
+    color: rgb(56, 56, 56);
+}
