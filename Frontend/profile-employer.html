@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Profile Management</title>
+    <link rel="stylesheet" href="./css/profile-employer.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employer Profile Management</h1>
+        
+        <!-- Company Info Card -->
+        <div class="card">
+            <h2>Company Info</h2>
+            <form id="company-info-form" onsubmit="return validateCompanyInfo()">
+                <div class="form-group">
+                    <label for="company-name">Company Name</label>
+                    <input type="text" id="company-name" name="company-name" value="Company Name Here" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" value="City, State" required>
+                </div>
+                <div class="form-group">
+                    <label for="industry">Industry</label>
+                    <select id="industry" name="industry" required>
+                        <option value="technology">Technology</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Finance</option>
+                        <option value="education">Education</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="website">Website (Optional)</label>
+                    <input type="url" id="website" name="website" value="https://www.company.com">
+                </div>
+                <button type="submit">Update Company Info</button>
+            </form>
+        </div>
+
+        <!-- Job Postings Card -->
+        <div class="card">
+            <h2>Job Postings</h2>
+            <button onclick="addJobPosting()">Add New Job Posting</button>
+            <p>Manage your job listings here.</p>
+            <div id="job-postings-list"></div>
+        </div>
+
+        <!-- Applicant Tracking Card -->
+        <div class="card">
+            <h2>Applicant Tracking</h2>
+            <p>View and manage job applications received.</p>
+            <div id="applicants-list">
+                <div class="applicant-entry">
+                    <p>Applicant: John Doe (john.doe@example.com) - Applied for: Software Engineer - Status: Pending</p>
+                    <button onclick="showApplicantDetails(this)">View Details</button>
+                </div>
+                <!-- More applicant entries can be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/profile-employer.js"></script>
+</body>
+</html>
