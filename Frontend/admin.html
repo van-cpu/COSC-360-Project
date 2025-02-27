@@ -3,30 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
     <div id="innerHTML">
         <h1>Admin Panel</h1>
-   <div class="dashboard"><h2>Dashboard</h2>
 
-    <h3 id="curSiteList">Current Site Listings: 0</h3>
-    <h3 id="curSiteUser">Current Site Users: 0</h3>
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <h3 id="curSiteList">Current Site Listings: 0</h3>
+            <h3 id="curSiteUser">Current Site Users: 0</h3>
+        </div>
 
-</div>
+        <br>
 
-<br>
+        <div class="dashboard">
+            <h2>Reported Issues</h2>
+            <h3 id="curSiteIssues">Current reported issues: <span id="issueCount">2</span></h3>
 
+            <!-- Filter Options -->
+            <div id="filterOptions">
+                <label><input type="checkbox" class="filterCheckbox" value="spam" checked> Spam</label>
+                <label><input type="checkbox" class="filterCheckbox" value="misleading" checked> Misleading</label>
+                <label><input type="checkbox" class="filterCheckbox" value="offensive" checked> Offensive</label>
+                <label><input type="checkbox" class="filterCheckbox" value="other" checked> Other</label>
+            </div>
 
-<div class="dashboard"><h2>Reported Issues</h2>
+            <ul id="reportedIssues">
+                <li data-category="spam">Job #123 - Reported for Spam</li>
+                <li data-category="misleading">Job #124 - Misleading Information</li>
+                <li data-category="offensive">Job #125 - Offensive Content</li>
+                <li data-category="other">Job #126 - Other Issue</li>
+            </ul>
+        </div>
+    </div>
 
-<h3 id="curSiteIssues">Current reported issues: 2</h3>
-
-
-</div>
     <script src="js/common.js"></script>
     <script src="js/admin.js"></script>
-</body>
-</html>

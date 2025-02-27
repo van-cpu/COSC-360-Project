@@ -15,16 +15,15 @@
             <img src="/Frontend/photos/bookmark.png" alt="bookmark" id="bookmark">
             <img src="/Frontend/photos/report.png" alt="report post" id="report">
         </div>
-        <div id="reportMenu" ><!--style="display: none;"-->
-            <h2>Report Listing</h2>
-            <form id="reportForm">
-                <label><input type="checkbox" name="reportReason" value="spam"> Spam</label><br>
-                <label><input type="checkbox" name="reportReason" value="misleading"> Misleading Information</label><br>
-                <label><input type="checkbox" name="reportReason" value="offensive"> Offensive Content</label><br>
-                <label><input type="checkbox" name="reportReason" value="other"> Other</label><br>
-                <button type="submit">Submit</button>
+   
+            <form id="reportForm" style="display: none;"><h2>Report Listing</h2>
+                <label class="option"><input type="checkbox" name="reportReason" value="spam"> Spam</label><br>
+                <label class="option"><input type="checkbox" name="reportReason" value="misleading"> Misleading Information</label><br>
+                <label class="option"><input type="checkbox" name="reportReason" value="offensive"> Offensive Content</label><br>
+                <label class="option"><input type="checkbox" name="reportReason" value="other"> Other</label><br>
+                <button type="submit" id="submitButton">Submit</button>
             </form>
-        </div>
+     
         <img src="/Frontend/photos/defaultimage.png" alt="Default Logo" id="companyLogo">
         <h2 id="companyName">Company Name</h2>
         <h1 id="jobTitle">Job Title</h1>

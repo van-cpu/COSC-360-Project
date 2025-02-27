@@ -3,7 +3,7 @@
 
     background-color: rgba(105, 105, 105, 0.477);
     padding: 0% 13% 5% 13%;
-   
+
     border-radius: 5px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -12,7 +12,9 @@ html {
     background-color: rgb(225, 225, 225);
 }
 
-#companyName{text-align: center;}
+#companyName {
+    text-align: center;
+}
 
 #companyLogo {
     max-width: 25%;
@@ -63,21 +65,24 @@ html {
     max-width: 8%;
     margin: 2%;
     display: block;
-    
+
 }
+
 #bookmark:hover {
-   filter: invert(100%);
+    filter: invert(100%);
 }
-#report{
+
+#report {
     max-width: 8%;
     margin: 2%;
     display: block;
     margin-left: auto;
-    
+
 }
+
 #report:hover {
     filter: invert(100%);
- }
+}
 
 .bookClick {
     transform: rotate(45deg);
@@ -88,10 +93,40 @@ html {
     color: rgb(56, 56, 56);
 }
 
-#iconCont{display: flex;
-   
-    
+#iconCont {
+    display: flex;
     width: 100%;
     margin: 2%;
+}
 
+#reportForm {
+    position: absolute;
+    background-color: white;
+    left: 40%;
+    right: 40%;
+    border: 3px solid black;
+    width: 15%;
+    padding: 3%;
+    font-size: 100%;
+    border-radius: 15px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+#submitButton {
+    border: 0px;
+    background-color: rgb(0, 68, 255);
+    color: white;
+    padding: 12%;
+    border-radius: 5%;
+    margin: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    width: 75%;
 }
