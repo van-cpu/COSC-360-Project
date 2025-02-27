@@ -1,0 +1,72 @@
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for centering the forms */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Form wrapper styling */
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-wrapper h2 {
+    text-align: center; /* Centers only the Login and Sign Up headings */
+}
+
+/* Form group for inputs and labels */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    text-align: left; /* Keeps labels (Email, Password, etc.) aligned left */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+p {
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .form-wrapper {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-group input,
+    .form-group select {
+        padding: 6px;
+    }
+
+    button {
+        padding: 8px;
+    }
+}
