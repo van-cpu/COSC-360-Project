@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", function(){
     
 document.body.innerHTML += `
 <nav id="navbar">
-    <a href="#" id="logo">MySite</a>
+    <a href="index.html" id="logo" class="link">MySite</a>
     <ul id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="job-listings.html">Job listings</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="admin.html">Admin Panel</a></li>
+        <li><a href="index.html"class="link">Home</a></li>
+        <li><a href="job-listings.html" class="link">Job listings</a></li>
+        <li><a href="profile.html"class="link">Profile</a></li>
+        <li><a href="admin.html"class="link">Admin Panel</a></li>
     </ul>
 </nav>
 `;});
