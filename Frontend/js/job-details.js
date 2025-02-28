@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             report.style.transition = "transform 4.3s ease";
             report.style.transform = "scale(1)";
             clickedReport = false;
+            //add function once backend is implemented
         } else {
             reportForm.style.display = "block";
             report.src = "/Frontend/photos/reportClick.png";
