@@ -3,11 +3,13 @@
     position: fixed;
     top: 0;        
     left: 0;
-    width: 100%;     /* Full width */
-    background-color: #a3a3a3;
+    width: 100%;
+    background-color: #848484b7;
     padding: 10px 10px;
     display: flex;
     align-items: center;
+    border-radius: 15px;
+    margin: 1%;
 }
 body{margin-top: 10%;}
 #nav-links{display: flex; gap: 25%;}
