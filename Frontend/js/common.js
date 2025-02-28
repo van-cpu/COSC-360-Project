@@ -1,5 +1,5 @@
 /*Universal JS*/
-document.addEventListener("DOMContentLoaded", function(){
+
     
 document.body.innerHTML += `
 <nav id="navbar">
@@ -12,4 +12,4 @@ document.body.innerHTML += `
         <li><a href="login.html"class="link">Login</a></li>
     </ul>
 </nav>
-`;});
+`;

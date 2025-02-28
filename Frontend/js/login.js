@@ -1,3 +1,4 @@
+
 // Toggle between login and signup forms
 function showSignup() {
     document.getElementById('login-form').style.display = 'none';
@@ -59,8 +60,13 @@ function validateSignupForm() {
     return true; // Allow form submission
 }
 
-// Add event listener to update fields when role changes
+
+document.addEventListener('DOMContentLoaded',function(){
+    // Add event listener to update fields when role changes
 document.getElementById('signup-role').addEventListener('change', updateEmployerFields);
 
 // Initialize employer fields visibility on page load
 updateEmployerFields();
+
+})
+
