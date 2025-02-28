@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     let checkboxes = document.querySelectorAll(".filterCheckbox");
+    let checkboxes1 = document.querySelectorAll(".filterCheckbox1");
     let issueList = document.getElementById("reportedIssues").children;
+    let userList = document.getElementById("userList").children;
     let issueCount = document.getElementById("issueCount");
     let viewReportedIssue = document.getElementById("viewReportedIssue");
     let closeButton = document.getElementById("close");
@@ -20,6 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     issueCount.innerText = issueList.length;
+
+
+
+
+
+
 
     function filterIssues() {
         let activeFilters = [];
@@ -48,6 +56,36 @@ document.addEventListener("DOMContentLoaded", function () {
         checkboxes[i].addEventListener("change", filterIssues);
     }
 
-    filterIssues();
 
+    
+    function filterIssues1() {
+        let activeFilters1 = [];
+
+
+        for (let i = 0; i < checkboxes1.length; i++) {
+            if (checkboxes1[i].checked) {
+                activeFilters1.push(checkboxes1[i].value);
+            }
+        }
+
+
+        for (let i = 0; i < userList.length; i++) {
+            let issueCategory = userList[i].getAttribute("data-category");
+
+            if (activeFilters1.indexOf(issueCategory) !== -1) {
+                userList[i].style.display = "list-item";
+            } else {
+                userList[i].style.display = "none";
+            }
+        }
+    }
+
+
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes1[i].addEventListener("change", filterIssues1);
+    }
+
+
+    filterIssues();
+    filterIssues1();
 });

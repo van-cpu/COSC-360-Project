@@ -45,9 +45,9 @@
             </div>
         </div>
         <div class="dashboard">
-
-            <h2>Reported Issues</h2>
-            <h3 id="curSiteIssues">Current reported issues: <span id="issueCount">2</span></h3>
+            <h1>Reports Dashboard</h1>
+            <h3>Reported Issues</h3>
+            <h4 id="curSiteIssues">Current reported issues: <span id="issueCount">2</span></h4>
 
             <div id="filterOptions">
                 <label><input type="checkbox" class="filterCheckbox" value="spam" checked> Spam</label>
@@ -62,6 +62,22 @@
                 <li data-category="offensive">Job #125 - Offensive Content <a class="viewProb">view</a></li>
                 <li data-category="other">Job #126 - Other Issue <a class="viewProb">view</a></li>
                 <li data-category="other">Job #22 - Other Issue 2 <a class="viewProb">view</a></li>
+            </ul>
+
+            <h3>Reported Users</h3>
+            <div id="filterOptionsUsers">
+                <label><input type="checkbox" class="filterCheckbox1" value="spam" checked> Spam</label>
+                <label><input type="checkbox" class="filterCheckbox1" value="misleading" checked> Misleading</label>
+                <label><input type="checkbox" class="filterCheckbox1" value="offensive" checked> Offensive</label>
+                <label><input type="checkbox" class="filterCheckbox1" value="other" checked> Other</label>
+            </div>
+            
+            <ul id="userList">
+                <li data-category="spam">User #123 - Reported for Spam <a class="viewProb">view</a></li>
+                <li data-category="misleading">User #124 - Misleading Information <a class="viewProb">view</a></li>
+                <li data-category="offensive">User #125 - Offensive Content <a class="viewProb">view</a></li>
+                <li data-category="other">User #126 - Other Issue <a class="viewProb">view</a></li>
+                <li data-category="other">User #22 - Other Issue 2 <a class="viewProb">view</a></li>
             </ul>
         </div>
     </div>
