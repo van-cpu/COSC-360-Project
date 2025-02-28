@@ -46,7 +46,7 @@ body{background-color: rgb(40, 40, 55); color: white;}
 /* Reported Issues Container */
 #viewReportedIssue {
     position: absolute;
-    background-color: white; 
+    background-color: rgb(107, 107, 107); 
     left: 30%;
     right: 40%;
     border: 3px solid black;
@@ -65,14 +65,14 @@ body{background-color: rgb(40, 40, 55); color: white;}
     border: 0px;
     background-color: rgb(0, 68, 255);
     color: white;
-    padding: 2%;
+    padding: 5%;
     border-radius: 15px;
     margin: 1%;
     margin-left: auto;
     margin-right: auto;
     display: block;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    width: 15%;
+    width: 25%;
 }
 
 .repBut:hover {
