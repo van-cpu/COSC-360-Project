@@ -1,0 +1,59 @@
+#innerHTML {
+    margin: 4%;
+    background-color: rgba(105, 105, 105, 0.477);
+    padding: 3%;
+    padding-left: 10%;
+    border-radius: 5px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+.dashboard {
+    background-color: rgba(255, 255, 255, 0.621);
+    border-radius: 5px;
+    padding: 5%;
+    margin: 5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.viewProb {
+    text-decoration: underline;
+    color: blue;
+}
+
+.viewProb:hover {
+    color: aliceblue;
+    cursor: pointer;
+}
+
+#viewReportedIssue {
+    position: absolute;
+    background-color: white;
+    left: 30%;
+    right: 40%;
+    border: 3px solid black;
+    width: 35%;
+    padding: 3%;
+    font-size: 100%;
+    border-radius: 15px;
+}
+
+#buttonHolder {
+    display: flex;
+}
+
+.repBut {
+    border: 0px;
+    background-color: rgb(0, 68, 255);
+    color: white;
+    padding: 2%;
+    border-radius: 15px;
+    margin: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    width: 15%;
+}
+
+.repBut:hover{background-color: rgb(60, 112, 255);}
