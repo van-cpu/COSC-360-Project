@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/common.css">
 </head>
+
 <body>
     <div id="innerHTML">
         <h1>Admin Panel</h1>
@@ -18,8 +20,32 @@
         </div>
 
         <br>
+        <div id="viewReportedIssue" style="display: none;">
+            <h2>View Issue</h2>
+            <div id="innerText" class="textDiv">
+                <h2>Job Details</h2>
+                <br>
+                <p id="jobLocation">Job Location (Remote/In-Person, City)</p>
+                <p id="salaryRange">Salary Range (if provided)</p>
+                <p id="employementType">Employment Type (Full-time, Part-time, Contract, Internship)</p>
+                <p id="jobDescription">Job Description (Detailed overview of responsibilities)</p>
+                <p id="reqQual">Requirements & Qualifications (Experience, skills, certifications)</p>
+                <p id="Bene">Benefits (401k, health insurance, PTO, etc.)</p>
+            </div>
+            <br>
+            <div class="textDiv">
+                <p id="jobDate">Job listed on: February 26 2025</p>
+                <p id="deadline">Deadline: June 6 2025</p>
+            </div>
+            <div id="buttonHolder">
 
+                <button id="delList" class="repBut">Delete Listing</button>
+                <button id="reqEdit" class="repBut">Request Edits</button>
+                <button id="close" class="repBut">Close</button>
+            </div>
+        </div>
         <div class="dashboard">
+
             <h2>Reported Issues</h2>
             <h3 id="curSiteIssues">Current reported issues: <span id="issueCount">2</span></h3>
 
@@ -31,11 +57,11 @@
             </div>
 
             <ul id="reportedIssues">
-                <li data-category="spam">Job #123 - Reported for Spam</li>
-                <li data-category="misleading">Job #124 - Misleading Information</li>
-                <li data-category="offensive">Job #125 - Offensive Content</li>
-                <li data-category="other">Job #126 - Other Issue</li>
-                <li data-category="other">Job #22 - Other Issue 2</li>
+                <li data-category="spam">Job #123 - Reported for Spam <a class="viewProb">view</a></li>
+                <li data-category="misleading">Job #124 - Misleading Information <a class="viewProb">view</a></li>
+                <li data-category="offensive">Job #125 - Offensive Content <a class="viewProb">view</a></li>
+                <li data-category="other">Job #126 - Other Issue <a class="viewProb">view</a></li>
+                <li data-category="other">Job #22 - Other Issue 2 <a class="viewProb">view</a></li>
             </ul>
         </div>
     </div>
