@@ -4,17 +4,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let issueList = document.getElementById("reportedIssues").children;
     let issueCount = document.getElementById("issueCount");
     let viewReportedIssue = document.getElementById("viewReportedIssue");
+    let closeButton = document.getElementById("close");
 
-    
 
     document.querySelectorAll(".viewProb").forEach((button) => {
         button.addEventListener("click", function () {
 
             viewReportedIssue.style.display = "block";
+            //Later when making the menu appear, request job details from the server
         });
     });
 
-
+    closeButton.addEventListener("click", function () {
+        viewReportedIssue.style.display = "none";
+    });
 
     issueCount.innerText = issueList.length;
 
