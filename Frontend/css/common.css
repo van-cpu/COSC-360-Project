@@ -1,1 +1,13 @@
 /*Universal CSS*/
+#navbar {
+    position: fixed;
+    top: 0;        
+    left: 0;
+    width: 100%;     /* Full width */
+    background-color: #a3a3a3;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+}
+body{margin-top: 10%;}
+#nav-links{display: flex; gap: 25%;}
