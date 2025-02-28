@@ -1,32 +1,68 @@
+/* Reset default margins and padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
+/* Full-screen background with a darker gradient */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e1e2f, #25293d);
+    padding: 20px;
+}
+
+/* Centering container */
 .container {
+    width: 100%;
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
 }
 
+/* Main Heading */
 h1 {
     text-align: center;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
+/* Card Styling */
 .card {
-    background: white;
-    border: 1px solid #ccc;
-    padding: 15px;
+    background: rgba(40, 40, 55, 0.8);
+    border-radius: 12px;
+    padding: 20px;
     margin-bottom: 20px;
-    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
 }
 
+.card:hover {
+   transform: scale(1.02);
+    
+}
+
+/* Card Headings */
 .card h2 {
-    margin-bottom: 10px;
+    color: #ffffff;
+    margin-bottom: 15px;
 }
 
+.card button{
+    display: inline;
+    margin-right: 3%;
+}
+
+.card p {
+    display: inline;
+    color: white;
+}
+
+/* Form Groups */
 .form-group {
     margin-bottom: 15px;
 }
@@ -34,46 +70,77 @@ h1 {
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    font-weight: 600;
+    color: #d3d3d3;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    outline: none;
+    transition: 0.3s;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Error Highlight */
 .form-group.error input,
 .form-group.error select,
 .form-group.error textarea {
-    border-color: #ff0000;
+    border: 2px solid #ff4d4d;
 }
 
+
+
+/* Buttons */
 button {
-    padding: 8px 16px;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px 16px;
+    background: #ff9800;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #e0e0e0;
+    background: #e68900;
 }
 
+/* Lists for Dynamic Content */
 #job-preferences-list, #experience-list, #skills-list, #education-list {
     margin-top: 10px;
 }
 
+/* Entries for Job Preferences, Skills, etc. */
 .entry {
-    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 6px;
+    color: #ffffff;
 }
 
+/* Modal Background */
 .modal {
     display: none;
     position: fixed;
@@ -86,20 +153,21 @@ button:hover {
     align-items: center;
 }
 
+/* Modal Content */
 .modal-content {
-    background: white;
+    background: rgba(40, 40, 55, 0.9);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 90%;
     max-width: 500px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-.modal-content button {
-    margin-top: 10px;
+.modal-content h3{
+    color: white;
+    margin-bottom: 2%;
 }
-
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 600px) {
     .container {
         margin: 10px;
@@ -107,7 +175,7 @@ button:hover {
     }
 
     .card {
-        padding: 10px;
+        padding: 15px;
     }
 
     .modal-content {
@@ -115,6 +183,6 @@ button:hover {
     }
 
     button {
-        padding: 6px 12px;
+        padding: 8px 14px;
     }
 }
