@@ -7,8 +7,9 @@ document.body.innerHTML += `
     <ul id="nav-links">
         <li><a href="index.html"class="link">Home</a></li>
         <li><a href="job-listings.html" class="link">Job listings</a></li>
-        <li><a href="profile.html"class="link">Profile</a></li>
+        <li><a href="profile-seeker.html"class="link">Profile</a></li>
         <li><a href="admin.html"class="link">Admin Panel</a></li>
+        <li><a href="login.html"class="link">Login</a></li>
     </ul>
 </nav>
 `;});
