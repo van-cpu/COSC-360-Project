@@ -1,1 +1,73 @@
 
+body {
+    background: linear-gradient(135deg, #1e1e2f, #25293d);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.welcome {
+    text-align: center;
+    padding: 300px;
+    background-image: url("../photos/homePage.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.card {
+    width: 70%;
+    border-radius: 8px;
+    padding: 10px 40px;
+    margin: 20px auto;
+    background: rgba(40, 40, 55, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+ 
+}
+
+.card h1{
+    width: 100%;
+}
+
+.jobcard {
+    background-color: rgb(50, 50, 70);
+    padding: 0 10px;
+    margin: 20px 20px;
+    border-radius: 8px;
+    width: 40%;
+    height: 250px;
+}
+
+.jobcard:hover{
+    transform: scale(1.02);
+}
+
+.employercard {
+    background-color: rgb(50, 50, 70);
+    padding: 0 10px;
+    margin: 20px 20px;
+    border-radius: 8px;
+    width: 40%;
+    height: 250px;
+}
+
+.employercard:hover{
+    transform: scale(1.02);
+}
+
+#bottomnav {
+    margin:auto;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    color: white;
+    text-decoration: underline;
+    text-align: center;
+}
+
+#bottomnav a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
