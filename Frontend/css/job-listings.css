@@ -36,6 +36,24 @@ body {
     color: black;
 }
 
+.catagories {
+    text-align: center;
+    padding: 10px;
+}
+
+.catagories button {
+    padding: 4px;
+    width: 100px;
+    border: 1pt solid black;
+    border-radius: 8px;
+}
+
+.selected {
+    background-color: rgba(40, 40, 55, 0.8);
+    color: white;
+}
+
+
 .card {
     width: 70%;
     border-radius: 8px;
@@ -56,6 +74,11 @@ body {
     width: 40%;
     height: 250px;
 }
+
+.jobcard:hover{
+    transform: scale(1.02);
+}
+
 .jobcard button{
    border-radius: 9px;
    align-items: center;

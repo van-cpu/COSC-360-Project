@@ -15,26 +15,31 @@
             <input type="text" placeholder="Job Title...">
         </div>
 
+        <div class="catagories">
+            <button onclick="tagSelect('fulltime')" id="fulltime"> Full Time </button>
+            <button onclick="tagSelect('parttime')" id="parttime">  Part Time  </button>
+            <button onclick="tagSelect('freelance')" id="freelance"> Freelance </button>
+            <button onclick="tagSelect('remote')" id="remote"> Remote </button>
+            <button onclick="tagSelect('manager')" id="manager"> Manager </button>
+            <button onclick="tagSelect('retail')" id="retail"> Retail </button>
+            <button onclick="tagSelect('noexperience')" id="noexperience"> No Experience </button>
+        </div>
         <div class="card">
-            <div class="jobcard">
-                <h2> Job Listing</h1>
+            <div class="jobcard" onclick="jobClicked('job1')">
+                <h2> Cheif Executive Officer</h1>
                 <p id="jobDescription">Job Description</p>
-                <button>See More</button>
             </div>
-            <div class="jobcard">
-                <h2> Job Listing</h1>
+            <div class="jobcard" onclick="jobClicked('job2')">
+                <h2> Accountant</h1>
                 <p id="jobDescription">Job Description</p>
-                <button>See More</button>
             </div>
-            <div class="jobcard">
-                <h2> Job Listing</h1>
+            <div class="jobcard" onclick="jobClicked('job3')" >
+                <h2> Shift Manager </h1>
                 <p id="jobDescription">Job Description</p>
-                <button>See More</button>
             </div>
-            <div class="jobcard">
-                <h2> Job Listing</h1>
+            <div class="jobcard" onclick="jobClicked('job4')" >
+                <h2> Researcher </h1>
                 <p id="jobDescription">Job Description</p>
-                <button>See More</button>
             </div>
         </div>
     </div>
