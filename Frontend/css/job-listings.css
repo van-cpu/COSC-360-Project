@@ -1,0 +1,87 @@
+body {
+    background: linear-gradient(135deg, #1e1e2f, #25293d);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main {
+    background-color:#1a1d2e;
+    border-radius: 20px;
+    margin: auto;
+    width: 80%;
+    height: 900px;
+}
+
+.search {
+    padding: 10px;
+    text-align: center;
+}
+
+.search img{
+    width: 56px;
+    height: 56px;
+    padding-right: 20px;
+    vertical-align: middle;
+
+}
+
+.search input{
+    padding: 10px;
+    height: 2em;
+    width: 70%; 
+    border-radius: 20px;
+}
+
+.search input::placeholder{
+    color: black;
+}
+
+.catagories {
+    text-align: center;
+    padding: 10px;
+}
+
+.catagories button {
+    padding: 4px;
+    width: 100px;
+    border: 1pt solid black;
+    border-radius: 8px;
+}
+
+.selected {
+    background-color: rgba(40, 40, 55, 0.8);
+    color: white;
+}
+
+
+.card {
+    width: 70%;
+    border-radius: 8px;
+    padding: 10px 40px;
+    margin: 10px auto;
+    background: rgba(40, 40, 55, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.jobcard {
+    background-color: rgb(50, 50, 70);
+    padding: 0 10px;
+    margin: 20px 20px;
+    border-radius: 8px;
+    width: 40%;
+    height: 250px;
+}
+
+.jobcard:hover{
+    transform: scale(1.02);
+}
+
+.jobcard button{
+   border-radius: 9px;
+   align-items: center;
+   border:none;
+   cursor: pointer;
+}
