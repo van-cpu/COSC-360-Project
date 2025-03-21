@@ -4,7 +4,6 @@ require 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
-
     if ($action === "login") {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['email'] = $email;
                 $_SESSION['role'] = $role;
-                header("Location: dashboard.php");
+                echo "Login Successful";
                 exit();
             } else {
                 echo "Wrong password.";

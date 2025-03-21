@@ -3,7 +3,7 @@ $servername = "localhost";
 $port = "3306"; 
 $username = "root"; 
 $password = "Super@wesome12"; 
-$database = "job_portal";
+$database = "jobboard";
 
 
 $conn = new mysqli($servername, $username, $password, $database, $port);
