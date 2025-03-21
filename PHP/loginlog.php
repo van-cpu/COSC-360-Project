@@ -5,22 +5,25 @@ require 'db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
     if ($action === "login") {
+        $name = trim($_POST['name']);
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        $stmt = $conn->prepare("SELECT id, password, role FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, name, password, role FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($user_id, $hashed_password, $role);
+            $stmt->bind_result($user_id, $name, $hashed_password, $role);
             $stmt->fetch();
 
             if (password_verify($password, $hashed_password)) {
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['email'] = $email;
+                $_SESSION['name'] = $name;
                 $_SESSION['role'] = $role;
+                $_SESSION['user_logged_in'] = true;
                 echo "<script>alert('Login Successful!'); window.location.href = '../Frontend/index.php';</script>";
                 exit();
 

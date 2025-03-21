@@ -11,8 +11,17 @@
    <a name="top"></a>
    <div class="main">
     <div class="welcome">
-        <?php ?>
-        <h1> Welcome Message </h1>
+        <?php
+        session_start();
+
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        echo "Welcome ".$user_id; 
+        }else{      
+            echo  "<h1> Welcome Message </h1>";
+        }
+        
+        ?>
+
         <p> Description of job website</p>
     </div>
    
