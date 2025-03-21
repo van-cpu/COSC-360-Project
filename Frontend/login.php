@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - Login/Signup</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div class="form-wrapper" id="login-form">
+            <h2>Login</h2>
+            <form action="../PHP/login.php" method="POST" onsubmit="return validateLoginForm()">
+                <input type="hidden" name="action" value="login">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+            </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="form-wrapper" id="signup-form" style="display: none;">
+            <h2>Sign Up</h2>
+            <form action="../PHP/login.php" method="POST" onsubmit="return validateSignupForm()">
+                <input type="hidden" name="action" value="signup">
+                
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" name="confirm-password" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="signup-role">Account Type</label>
+                    <select id="signup-role" name="role" required onchange="toggleEmployerFields()">
+                        <option value="job-seeker">Job Seeker</option>
+                        <option value="employer">Employer</option>
+                    </select>
+                </div>
+            
+                <div id="employer-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="signup-company-name">Company Name</label>
+                        <input type="text" id="signup-company-name" name="company-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-location">Company Location</label>
+                        <input type="text" id="signup-location" name="location">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-industry">Industry</label>
+                        <select id="signup-industry" name="industry">
+                            <option value="technology">Technology</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Finance</option>
+                            <option value="education">Education</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-website">Company Website (Optional)</label>
+                        <input type="url" id="signup-website" name="website">
+                    </div>
+                </div>
+            
+                <button type="submit">Sign Up</button>
+                <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+            </form>
+        </div>
+    </div>
+    
+    
+    <script src="./js/login.js"></script>
+    <script src="./js/common.js"></script>
+</body>
+</html>
