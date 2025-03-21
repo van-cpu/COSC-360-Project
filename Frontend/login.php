@@ -12,7 +12,7 @@
         <!-- Login Form -->
         <div class="form-wrapper" id="login-form">
             <h2>Login</h2>
-            <form action="../PHP/login.php" method="POST" onsubmit="return validateLoginForm()">
+            <form action="../PHP/loginlog.php" method="POST" onsubmit="return validateLoginForm()">
                 <input type="hidden" name="action" value="login">
                 <div class="form-group">
                     <label for="login-email">Email</label>
@@ -30,7 +30,7 @@
         <!-- Signup Form -->
         <div class="form-wrapper" id="signup-form" style="display: none;">
             <h2>Sign Up</h2>
-            <form action="../PHP/login.php" method="POST" onsubmit="return validateSignupForm()">
+            <form action="../PHP/loginlog.php" method="POST" onsubmit="return validateSignupForm()">
                 <input type="hidden" name="action" value="signup">
                 
                 <div class="form-group">

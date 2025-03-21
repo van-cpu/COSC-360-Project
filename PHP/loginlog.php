@@ -21,13 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['email'] = $email;
                 $_SESSION['role'] = $role;
-                echo "Login Successful";
+                echo "<script>alert('Login Successful!'); window.location.href = '../Frontend/index.php';</script>";
                 exit();
+
             } else {
-                echo "Wrong password.";
+                echo "<script>alert('Wrong password, please try again'); window.location.href = '../Frontend/login.php';</script>";
+                exit();
             }
         } else {
-            echo "This email does not exist. Please sign up.";
+            echo "<script>alert('Email does not exist, please create a account'); window.location.href = '../Frontend/login.php';</script>";
+            exit();
         }
 
         $stmt->close();
@@ -59,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssssssss", $name, $email, $password, $role, $company_name, $location, $industry, $website);
 
         if ($stmt->execute()) {
-            echo "Signup successful! You can now login.";
+            echo "<script>alert('Sign up successful, you can sign in now.'); window.location.href = '../Frontend/login.php';</script>";
         } else {
             echo "Error: " . $conn->error;
         }

@@ -11,6 +11,7 @@
    <a name="top"></a>
    <div class="main">
     <div class="welcome">
+        <?php ?>
         <h1> Welcome Message </h1>
         <p> Description of job website</p>
     </div>
