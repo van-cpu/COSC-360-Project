@@ -5,7 +5,6 @@ require 'db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
     if ($action === "login") {
-        $name = trim($_POST['name']);
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
@@ -24,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['name'] = $name;
                 $_SESSION['role'] = $role;
                 $_SESSION['user_logged_in'] = true;
-                echo "<script>alert('Login Successful!'); window.location.href = '../Frontend/index.php';</script>";
+                echo "<script>alert('Login Successful! ".$name."'); window.location.href = '../Frontend/index.php';</script>";
                 exit();
 
             } else {
