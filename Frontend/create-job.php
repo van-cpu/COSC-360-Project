@@ -32,7 +32,7 @@ $stmt->close();
 <body>
     <h2>Create Job Posting</h2>
     
-    <form action="create_job.php" method="POST">
+    <form action="../PHP/create-jobback.php" method="POST">
         <div id="formHolder"> 
         <label for="job_title">Job Title:</label>
         <input type="text" id="job_title" name="job_title" required>
@@ -58,27 +58,7 @@ $stmt->close();
     </div>
     </form>
 
-    <?php
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_job'])) {
-        $job_title = trim($_POST['job_title']);
-        $job_description = trim($_POST['job_description']);
-        $salary = $_POST['salary'];
-
-
-        $stmt = $conn->prepare("INSERT INTO jobs (user_id, job_title, company_name, location, job_description, salary) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("issssi", $user_id, $job_title, $company_name, $location, $job_description, $salary);
-
-
-        if ($stmt->execute()) {
-            echo "<script>alert('Job created successfully.'); window.location.href = 'index.php';</script>";
-        } else {
-            echo "<script>alert('Error creating job: " . $conn->error . "');</script>";
-        }
-
-        $stmt->close();
-    }
-    ?>
+  
 
 <script src="js/common.js"></script>
 </body>

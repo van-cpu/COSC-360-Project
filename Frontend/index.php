@@ -21,7 +21,7 @@
         }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
-            echo  "<h1> Welcome Message </h1>";
+            echo  "<h1> Welcome </h1>";
         }
         
         ?>
