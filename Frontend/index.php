@@ -11,7 +11,21 @@
    <a name="top"></a>
    <div class="main">
     <div class="welcome">
-        <h1> Welcome Message </h1>
+        <?php
+        session_start();
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        
+        echo "<h1> Welcome ".$_SESSION['name']."</h1>"; 
+        if ($_SESSION['role'] === 'employer') {
+            echo '<a href="create-job.php" id="createJobButton">Create Job</a>';
+        }
+        }else{
+            echo '<a href="login.php" id="loginLink">Login</a>';      
+            echo  "<h1> Welcome Message </h1>";
+        }
+        
+        ?>
+
         <p> Description of job website</p>
     </div>
    
@@ -42,8 +56,12 @@
 
     <div class="card">
         <div class="jobtypes">
-            <p><b> Trending Job Types:</b><a href="job-listings.html"> Freelance </a><a href="job-listings.html"> Full Time </a><a href="job-listings.html"> Remote </a>
-                <a href="job-listings.html"> Part Time </a><a href="job-listings.html"> Manager </a> <a href="job-listings.html"> No Experience </a>
+            <p><b> Trending Job Types:</b><a href="job-listings.html"> Freelance </a>
+                <a href="job-listings.html"> Full Time </a>
+                <a href="job-listings.html"> Remote </a>
+                <a href="job-listings.html"> Part Time </a>
+                <a href="job-listings.html"> Manager </a> 
+                <a href="job-listings.html"> No Experience </a>
                 <a href="job-listings.html"> Retail </a><p>
         </div>
     </div>

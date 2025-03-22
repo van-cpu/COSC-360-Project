@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="css/job-listings.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<?php
+        session_start();
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        }else{
+            echo '<a href="login.php" id="loginLink">Login</a>';      
+        }
+        
+        ?>
+    <div class="main">
+        <div class="search">
+            <h1> Search Job Listing Board </h1>
+            <img src="photos/search-2911.png">
+            <input type="text" placeholder="Job Title...">
+        </div>
+
+        <div class="catagories">
+            <button onclick="tagSelect('fulltime')" id="fulltime"> Full Time </button>
+            <button onclick="tagSelect('parttime')" id="parttime">  Part Time  </button>
+            <button onclick="tagSelect('freelance')" id="freelance"> Freelance </button>
+            <button onclick="tagSelect('remote')" id="remote"> Remote </button>
+            <button onclick="tagSelect('manager')" id="manager"> Manager </button>
+            <button onclick="tagSelect('retail')" id="retail"> Retail </button>
+            <button onclick="tagSelect('noexperience')" id="noexperience"> No Experience </button>
+        </div>
+        <div class="card">
+            <div class="jobcard" onclick="jobClicked('job1')">
+                <h2> Cheif Executive Officer</h1>
+                <p id="jobDescription">Job Description</p>
+            </div>
+            <div class="jobcard" onclick="jobClicked('job2')">
+                <h2> Accountant</h1>
+                <p id="jobDescription">Job Description</p>
+            </div>
+            <div class="jobcard" onclick="jobClicked('job3')" >
+                <h2> Shift Manager </h1>
+                <p id="jobDescription">Job Description</p>
+            </div>
+            <div class="jobcard" onclick="jobClicked('job4')" >
+                <h2> Researcher </h1>
+                <p id="jobDescription">Job Description</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/job-listings.js"></script>
+</body>
+</html>
