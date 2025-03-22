@@ -3,7 +3,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 98%;
+    width: 95%;
     background-color: #848484b7;
     padding: 10px 10px;
     display: flex;
@@ -66,4 +66,22 @@ ul{display: block;
 
 #loginLink:hover {
     background-color: darkblue;
+}
+
+#createJob {
+    position: absolute;
+    top: 40px; 
+    right: 40px;
+    background-color: rgb(245, 125, 125); 
+    border: black 1px solid;
+    color: white; 
+    padding: 10px 15px;
+    text-decoration: none; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    z-index: 1000;
+}
+
+#createJob:hover {
+    background-color: rgb(139, 0, 0);
 }

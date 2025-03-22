@@ -17,7 +17,7 @@
         
         echo "<h1> Welcome ".$_SESSION['name']."</h1>"; 
         if ($_SESSION['role'] === 'employer') {
-            echo '<a href="create-job.php" id="createJobButton">Create Job</a>';
+            echo '<a href="create-job.php" id="createJob">Create Job</a>';
         }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
