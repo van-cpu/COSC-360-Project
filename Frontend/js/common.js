@@ -9,7 +9,6 @@ document.body.innerHTML += `
         <li><a href="job-listings.php" class="link">Job listings</a></li>
         <li><a href="profile-seeker.php"class="link">Profile</a></li>
         <li><a href="admin.php"class="link">Admin Panel</a></li>
-        <li><a href="login.php"class="link">Login</a></li>
     </ul>
 </nav>
 `;

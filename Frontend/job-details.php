@@ -10,6 +10,14 @@
 </head>
 
 <body>
+<?php
+        session_start();
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        }else{
+            echo '<a href="login.php" id="loginLink">Login</a>';      
+        }
+        
+        ?>
     <div id="innerHTML">
         <div id="iconCont">
             <img src="/Frontend/photos/bookmark.png" alt="bookmark" id="bookmark">

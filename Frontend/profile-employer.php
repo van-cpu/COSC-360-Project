@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
+<?php
+        session_start();
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        
+        }else{
+            echo '<a href="login.php" id="loginLink">Login</a>';      
+        }
+        
+        ?>
     <div class="container">
         <h1>Employer Profile Management</h1>
         

@@ -13,10 +13,11 @@
     <div class="welcome">
         <?php
         session_start();
-
         if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        
         echo "<h1> Welcome ".$_SESSION['name']."</h1>"; 
-        }else{      
+        }else{
+            echo '<a href="login.php" id="loginLink">Login</a>';      
             echo  "<h1> Welcome Message </h1>";
         }
         

@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
+<?php
+        session_start();
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        }else{
+            echo '<a href="login.php" id="loginLink">Login</a>';      
+        }
+        
+        ?>
     <div class="container">
         <!-- Login Form -->
         <div class="form-wrapper" id="login-form">
