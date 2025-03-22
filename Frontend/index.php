@@ -16,6 +16,9 @@
         if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
         
         echo "<h1> Welcome ".$_SESSION['name']."</h1>"; 
+        if ($_SESSION['role'] === 'employer') {
+            echo '<a href="create-job.php" id="createJobButton">Create Job</a>';
+        }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
             echo  "<h1> Welcome Message </h1>";

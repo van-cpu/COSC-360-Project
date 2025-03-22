@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['email'] = $email;
                 $_SESSION['name'] = $name;
-                $_SESSION['role'] = $role;
+                $_SESSION['role'] = $role;//employee, employer, admin
                 $_SESSION['user_logged_in'] = true;
                 echo "<script>alert('Login Successful! ".$name."'); window.location.href = '../Frontend/index.php';</script>";
                 exit();
