@@ -67,6 +67,23 @@ ul{display: block;
 #loginLink:hover {
     background-color: darkblue;
 }
+#logoutLink {
+    position: absolute;
+    top: 90px; 
+    right: 40px;
+    background-color: rgb(125, 125, 245); 
+    border: black 1px solid;
+    color: white; 
+    padding: 10px 15px;
+    text-decoration: none; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    z-index: 1000;
+}
+
+#logout:hover {
+    background-color: darkblue;
+}
 
 #createJob {
     position: absolute;

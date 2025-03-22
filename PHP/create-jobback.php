@@ -14,11 +14,13 @@ $stmt->close();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_job'])) {
     $job_title = trim($_POST['job_title']);
     $job_description = trim($_POST['job_description']);
+    $requirements = trim($_POST['requirements']);
+    $benefits = trim($_POST['benefits']);
     $salary = $_POST['salary'];
 
 
-    $stmt = $conn->prepare("INSERT INTO jobs (user_id, title, company, location, job_description, salary) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issssi", $user_id, $job_title, $company_name, $location, $job_description, $salary);
+    $stmt = $conn->prepare("INSERT INTO jobs (user_id, title, company, location, requirements, benefits, job_description, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssssi", $user_id, $job_title, $company_name, $location, $requirements, $benefits, $job_description, $salary);
 
 
     if ($stmt->execute()) {

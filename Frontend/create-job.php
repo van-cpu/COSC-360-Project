@@ -50,6 +50,15 @@ $stmt->close();
         <textarea id="job_description" name="job_description" rows="4" required></textarea>
         <br><br>
 
+        <label for="benefits">Benefits:</label>
+        <textarea id="benefits" name="benefits" rows="4" required></textarea>
+        <br><br>
+
+        <label for="requirements">Requirements:</label>
+        <textarea id="requirements" name="requirements" rows="4" required></textarea>
+        <br><br>
+
+
         <label for="salary">Salary:</label>
         <input type="number" id="salary" name="salary" min="0" step="500" required>
         <br><br>
