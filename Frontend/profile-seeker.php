@@ -27,15 +27,18 @@
         $stmt->fetch();
         $stmt->close();
 
-        $profileImageSrc = $profile_image ? 'data:image/jpeg;base64,' . base64_encode($profile_image) : '../Frontend/photos/defaultimage.png';
 
         ?>
         <!-- Personal Info Card -->
         <div class="card">
             <h2>Personal Info</h2>
             
-            <form id="personal-info-form" action="../PHP/profile-seekerLog.php" method="POST" onsubmit="return validatePersonalInfo()">
-                <img src="<?php echo $profileImageSrc; ?>" alt="Profile Image" class="profile-image">
+            <form id="personal-info-form" action="../PHP/profile-seekerLog.php" method="POST" onsubmit="return validatePersonalInfo()" enctype="multipart/form-data">
+                <img src="../PHP/getImage.php" alt="Profile Image" class="profile-image">
+                <div class="form-group">
+                <label for="profile-image">Change profile Image</label>
+                <input type="file" id="profile-image" name="profile_image" accept="image/*">
+                </div>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" value=<?php echo $user_name ?> placeholder="wad" required>
