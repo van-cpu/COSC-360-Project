@@ -9,50 +9,42 @@
 </head>
 <body>
 <?php
-        session_start();
-        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
-        }else{
-            echo '<a href="login.php" id="loginLink">Login</a>';      
-        }
-        
-        ?>
-    <div class="main">
-        <div class="search">
-            <h1> Search Job Listing Board </h1>
-            <img src="photos/search-2911.png">
-            <input type="text" placeholder="Job Title...">
-        </div>
+    session_start();
+    $isSignedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true;
+    if (!$isSignedIn) {
+        echo '<a href="login.php" id="loginLink">Login</a>';
+    }
+?>
+<!-- Inject PHP session info into JS -->
+<script>
+    let isSignedIn = <?php echo $isSignedIn ? 'true' : 'false'; ?>;
+</script>
 
-        <div class="catagories">
-            <button onclick="tagSelect('fulltime')" id="fulltime"> Full Time </button>
-            <button onclick="tagSelect('parttime')" id="parttime">  Part Time  </button>
-            <button onclick="tagSelect('freelance')" id="freelance"> Freelance </button>
-            <button onclick="tagSelect('remote')" id="remote"> Remote </button>
-            <button onclick="tagSelect('manager')" id="manager"> Manager </button>
-            <button onclick="tagSelect('retail')" id="retail"> Retail </button>
-            <button onclick="tagSelect('noexperience')" id="noexperience"> No Experience </button>
-        </div>
-        <div class="card">
-            <div class="jobcard" onclick="jobClicked('job1')">
-                <h2> Cheif Executive Officer</h1>
-                <p id="jobDescription">Job Description</p>
-            </div>
-            <div class="jobcard" onclick="jobClicked('job2')">
-                <h2> Accountant</h1>
-                <p id="jobDescription">Job Description</p>
-            </div>
-            <div class="jobcard" onclick="jobClicked('job3')" >
-                <h2> Shift Manager </h1>
-                <p id="jobDescription">Job Description</p>
-            </div>
-            <div class="jobcard" onclick="jobClicked('job4')" >
-                <h2> Researcher </h1>
-                <p id="jobDescription">Job Description</p>
-            </div>
-        </div>
+<div class="main">
+    <div class="search">
+        <h1> Search Job Listing Board </h1>
+        <img src="photos/search-2911.png">
+        <input type="text" id="searchInput" placeholder="Job Title...">
+        <button onclick="searchJobs()">Search</button>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/job-listings.js"></script>
+    <div class="catagories">
+        <button onclick="tagSelect('fulltime')" id="fulltime"> Full Time </button>
+        <button onclick="tagSelect('parttime')" id="parttime"> Part Time </button>
+        <button onclick="tagSelect('freelance')" id="freelance"> Freelance </button>
+        <button onclick="tagSelect('remote')" id="remote"> Remote </button>
+        <button onclick="tagSelect('manager')" id="manager"> Manager </button>
+        <button onclick="tagSelect('retail')" id="retail"> Retail </button>
+        <button onclick="tagSelect('noexperience')" id="noexperience"> No Experience </button>
+    </div>
+
+    <!-- This will be dynamically filled -->
+    <div class="card" id="jobResults"></div>
+    <div id="pagination" class="pagination-controls"></div>
+
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/job-listings.js"></script>
 </body>
 </html>

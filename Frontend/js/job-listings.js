@@ -1,51 +1,102 @@
-let isSignedIn = false;
+let currentPage = 1;
 
-function jobClicked(title){
-    if(!isSignedIn){
-        window.location.href = "login.html";
-    }
-    else{
-        window.location.href = "job-details.html"
-    }
-}
+function searchJobs(page = 1) {
+    const keyword = document.getElementById('searchInput').value;
+    currentPage = page;
 
-function tagSelect(name) {
-    let button = document.getElementById(name);
-    if (button) {
-        button.classList.toggle("selected");
-    }
-}
+    fetch(`../PHP/search-jobs.php?keyword=${encodeURIComponent(keyword)}&page=${page}`)
+        .then(response => response.json())
+        .then(data => {
+            const jobContainer = document.getElementById('jobResults');
+            jobContainer.innerHTML = '';
 
-document.addEventListener("DOMContentLoaded", function () {
-    let searchInput = document.querySelector(".search input");
-    let jobCardsContainer = document.querySelector(".card");
-    let jobCards = Array.from(document.querySelectorAll(".jobcard"));
+            if (data.jobs.length === 0) {
+                jobContainer.innerHTML = '<p>No jobs found.</p>';
+                return;
+            }
 
-    searchInput.addEventListener("input", function () {
-        let search = searchInput.value.toLowerCase().trim();
-        
-        // Sort job cards based on similarity to the search input
-        jobCards.sort((a, b) => {
-            let titleA = a.querySelector("h2").innerText.toLowerCase();
-            let titleB = b.querySelector("h2").innerText.toLowerCase();
-            return getSimilarity(search, titleB) - getSimilarity(search, titleA);
+            data.jobs.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'jobcard';
+                jobCard.onclick = () => jobClicked(job.id);
+                jobCard.innerHTML = `
+                    <h2>${job.title}</h2>
+                    <p>${job.job_description}</p>
+                    <p><strong>Company:</strong> ${job.company}</p>
+                    <p><strong>Location:</strong> ${job.location || 'N/A'}</p>
+                `;
+                jobContainer.appendChild(jobCard);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            renderPagination(data.totalPages, data.currentPage);
+        })
+        .catch(error => {
+            console.error('Error fetching jobs:', error);
         });
 
-        // Reorder job cards in the DOM
-        jobCards.forEach(card => jobCardsContainer.appendChild(card));
-    });
-});
 
-// Function to calculate similarity score between input and job title
-function getSimilarity(input, title) {
-    if (!input) return 0;
-    if (title.includes(input)) return 2; 
-    
-    let words = title.split(" ");
-    let score = 0;
-    words.forEach(word => {
-        if (word.startsWith(input)) score += 1; 
-    });
-    
-    return score;
 }
+
+function renderPagination(totalPages, currentPage) {
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = '';
+
+    const maxVisible = 5; // Total buttons (excluding first/last)
+    const pageButtons = [];
+
+    // Helper to create a page button
+    const createPageButton = (page, label = null) => {
+        const btn = document.createElement('button');
+        btn.innerText = label || page;
+        if (page === currentPage) btn.classList.add('active');
+        btn.onclick = () => searchJobs(page);
+        paginationContainer.appendChild(btn);
+    };
+
+    // Always show the first page
+    createPageButton(1);
+
+    // Left ellipsis
+    if (currentPage > 3) {
+        const ellipsis = document.createElement('span');
+        ellipsis.innerText = '...';
+        ellipsis.style.margin = '0 5px';
+        ellipsis.style.color = '#ccc';
+        paginationContainer.appendChild(ellipsis);
+    }
+
+    // Middle page buttons
+    let start = Math.max(2, currentPage - 1);
+    let end = Math.min(totalPages - 1, currentPage + 1);
+
+    if (currentPage === 1) {
+        end = Math.min(totalPages - 1, currentPage + 2);
+    } else if (currentPage === totalPages) {
+        start = Math.max(2, currentPage - 2);
+    }
+
+    for (let i = start; i <= end; i++) {
+        createPageButton(i);
+    }
+
+    // Right ellipsis
+    if (currentPage < totalPages - 2) {
+        const ellipsis = document.createElement('span');
+        ellipsis.innerText = '...';
+        ellipsis.style.margin = '0 5px';
+        ellipsis.style.color = '#ccc';
+        paginationContainer.appendChild(ellipsis);
+    }
+
+    // Last page
+    if (totalPages > 1) {
+        createPageButton(totalPages);
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    searchJobs();
+    document.getElementById('searchInput').addEventListener('input', () => searchJobs(1));
+});
