@@ -50,6 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $website = trim($_POST['website']);
         }
 
+        $profile_image = null; 
+        if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == UPLOAD_ERR_OK) {
+            $profile_image = file_get_contents($_FILES['profile_image']['tmp_name']); 
+        }
+        
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -60,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $stmt->close();
 
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, company_name, location, industry, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssss", $name, $email, $password, $role, $company_name, $location, $industry, $website);
+        $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, company_name, location, industry, website, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"); 
+        $stmt->bind_param("sssssssss", $name, $email, $password, $role, $company_name, $location, $industry, $website, $profile_image);
 
         if ($stmt->execute()) {
             echo "<script>alert('Sign up successful, you can sign in now.'); window.location.href = '../Frontend/login.php';</script>";

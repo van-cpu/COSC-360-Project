@@ -60,6 +60,12 @@
                     <label for="signup-confirm-password">Confirm Password</label>
                     <input type="password" id="signup-confirm-password" name="confirm-password" required>
                 </div>
+
+                <div class="form-group">
+                <label for="profile-image">Profile Image (optional):</label>
+                <input type="file" id="profile-image" name="profile_image" accept="image/*">
+                </div>
+
             
                 <div class="form-group">
                     <label for="signup-role">Account Type</label>
