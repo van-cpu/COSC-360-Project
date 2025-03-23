@@ -34,10 +34,10 @@
             <h2>Personal Info</h2>
             
             <form id="personal-info-form" action="../PHP/profile-seekerLog.php" method="POST" onsubmit="return validatePersonalInfo()" enctype="multipart/form-data">
-                <img src="../PHP/getImage.php" alt="Profile Image" class="profile-image">
+                <img src="../PHP/getImage.php" alt="Profile Image" class="profile-image"id="profile-image">
                 <div class="form-group">
                 <label for="profile-image">Change profile Image</label>
-                <input type="file" id="profile-image" name="profile_image" accept="image/*">
+                <input type="file" name="profile_image" accept="image/*">
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>

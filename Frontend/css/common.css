@@ -102,3 +102,6 @@ ul{display: block;
 #createJob:hover {
     background-color: rgb(139, 0, 0);
 }
+
+#profile-image{max-width: 200px;
+width: 200px;}
