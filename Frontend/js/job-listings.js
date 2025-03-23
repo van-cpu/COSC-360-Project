@@ -1,42 +1,46 @@
 let currentPage = 1;
 
-function searchJobs(page = 1) {
+function searchJobs(page = 1, silent = false) {
     const keyword = document.getElementById('searchInput').value;
     currentPage = page;
 
     fetch(`../PHP/search-jobs.php?keyword=${encodeURIComponent(keyword)}&page=${page}`)
         .then(response => response.json())
         .then(data => {
-            const jobContainer = document.getElementById('jobResults');
-            jobContainer.innerHTML = '';
+            if (!silent) {
+                const jobContainer = document.getElementById('jobResults');
+                jobContainer.innerHTML = '';
 
-            if (data.jobs.length === 0) {
-                jobContainer.innerHTML = '<p>No jobs found.</p>';
-                return;
+                if (data.jobs.length === 0) {
+                    jobContainer.innerHTML = '<p>No jobs found.</p>';
+                    return;
+                }
+
+                data.jobs.forEach(job => {
+                    const jobCard = document.createElement('div');
+                    jobCard.className = 'jobcard';
+                    jobCard.onclick = () => jobClicked(job.id);
+                    jobCard.innerHTML = `
+                        <h2>${job.title}</h2>
+                        <p>${job.job_description}</p>
+                        <p><strong>Company:</strong> ${job.company}</p>
+                        <p><strong>Location:</strong> ${job.location || 'N/A'}</p>
+                    `;
+                    jobContainer.appendChild(jobCard);
+                });
+
+                renderPagination(data.totalPages, data.currentPage);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            data.jobs.forEach(job => {
-                const jobCard = document.createElement('div');
-                jobCard.className = 'jobcard';
-                jobCard.onclick = () => jobClicked(job.id);
-                jobCard.innerHTML = `
-                    <h2>${job.title}</h2>
-                    <p>${job.job_description}</p>
-                    <p><strong>Company:</strong> ${job.company}</p>
-                    <p><strong>Location:</strong> ${job.location || 'N/A'}</p>
-                `;
-                jobContainer.appendChild(jobCard);
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            renderPagination(data.totalPages, data.currentPage);
+            // Track latest known job count
+            window.latestJobCount = data.totalCount;
         })
         .catch(error => {
             console.error('Error fetching jobs:', error);
         });
-
-
 }
+
 
 function renderPagination(totalPages, currentPage) {
     const paginationContainer = document.getElementById('pagination');

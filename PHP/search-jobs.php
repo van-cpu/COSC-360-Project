@@ -35,8 +35,10 @@ header('Content-Type: application/json');
 echo json_encode([
     'jobs' => $jobs,
     'totalPages' => $totalPages,
-    'currentPage' => $page
+    'currentPage' => $page,
+    'totalCount' => $totalJobs
 ]);
+
 
 $stmt->close();
 $conn->close();

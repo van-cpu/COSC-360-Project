@@ -25,7 +25,6 @@
         <h1> Search Job Listing Board </h1>
         <img src="photos/search-2911.png">
         <input type="text" id="searchInput" placeholder="Job Title...">
-        <button onclick="searchJobs()">Search</button>
     </div>
 
     <div class="catagories">
