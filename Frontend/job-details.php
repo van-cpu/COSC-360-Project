@@ -35,8 +35,8 @@ if (!$is_logged_in) {
 ?>
     <div id="innerHTML">
         <div id="iconCont">
-            <img src="/Frontend/photos/bookmark.png" alt="bookmark" id="bookmark">
-            <img src="/Frontend/photos/report.png" alt="report post" id="report">
+            <img src="../Frontend/photos/bookmark.png" alt="bookmark" id="bookmark">
+            <img src="../Frontend/photos/report.png" alt="report post" id="report">
         </div>
    
         <form id="reportForm" style="display: none;">
@@ -48,7 +48,7 @@ if (!$is_logged_in) {
             <button type="submit" id="submitButton">Submit</button>
         </form>
      
-        <img src="/Frontend/photos/defaultimage.png" alt="Default Logo" id="companyLogo">
+        <img src="../Frontend/photos/defaultimage.png" alt="Default Logo" id="companyLogo">
         <h2 id="companyName"><?php echo htmlspecialchars($company_name); ?></h2>
         <h1 id="jobTitle"><?php echo htmlspecialchars($job_title); ?></h1>
 

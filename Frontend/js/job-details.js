@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (clicked) {
-            book.src = "/Frontend/photos/bookmark.png";
+            book.src = "../Frontend/photos/bookmark.png";
             book.style.transition = "transform 4.3s ease";
             book.style.transform = "scale(1)";
             clicked = false;
         } else {
-            book.src = "/Frontend/photos/bookmarkClick.png";
+            book.src = "../Frontend/photos/bookmarkClick.png";
             book.style.transition = "transform 0.3s ease";
             book.style.transform = "scale(1.8)";
             clicked = true;
@@ -29,19 +29,19 @@ document.addEventListener("DOMContentLoaded", function () {
     report.addEventListener("click", function () {
 
 
-        report.src = "/Frontend/photos/bookmarkClick.png"
+        report.src = "../Frontend/photos/bookmarkClick.png"
 
 
         if (clickedReport) {
             reportForm.style.display = "none";
-            report.src = "/Frontend/photos/report.png";
+            report.src = "../Frontend/photos/report.png";
             report.style.transition = "transform 4.3s ease";
             report.style.transform = "scale(1)";
             clickedReport = false;
             //add function once backend is implemented
         } else {
             reportForm.style.display = "block";
-            report.src = "/Frontend/photos/reportClick.png";
+            report.src = "../Frontend/photos/reportClick.png";
             report.style.transition = "transform 0.3s ease";
             report.style.transform = "scale(1.8)";
             clickedReport = true;
