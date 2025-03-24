@@ -35,13 +35,16 @@
     <?php
     $result = $conn->query("SELECT id, title, job_description FROM jobs");
         if ($result->num_rows > 0) {
+            $counter =0;
             while ($row = $result->fetch_assoc()) {
+                if ($counter < 4) {
+                    $counter += 1;
                 echo '<div class="jobcard" onclick="window.location.href=\'job-details.php?id=' . $row['id'] . '\'">';
                 echo '<h2>' . htmlspecialchars($row['title']) . '</h2>';
                 echo '<p>' . htmlspecialchars($row['job_description']) . '</p>';
                 echo '<button> See More </button>';
                 echo '</div>';
-            }
+            }}
         } else {
             echo '<p>No job listings available.</p>';
         }

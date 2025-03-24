@@ -38,7 +38,7 @@
         <!-- Signup Form -->
         <div class="form-wrapper" id="signup-form" style="display: none;">
             <h2>Sign Up</h2>
-            <form action="../PHP/loginlog.php" method="POST" onsubmit="return validateSignupForm()">
+            <form action="../PHP/loginlog.php" method="POST" onsubmit="return validateSignupForm()" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="signup">
                 
                 <div class="form-group">
@@ -63,7 +63,7 @@
 
                 <div class="form-group">
                 <label for="profile-image">Profile Image (optional):</label>
-                <input type="file" id="profile-image" name="profile_image" accept="image/*">
+                <input type="file" name="profile_image" accept="image/*">
                 </div>
 
             
