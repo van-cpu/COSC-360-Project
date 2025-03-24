@@ -23,11 +23,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     issueCount.innerText = issueList.length;
 
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const searchTerm = this.value.toLowerCase();
+        const users = document.querySelectorAll('#userListContainer .user'); // Updated selector
 
+        users.forEach(user => {
+            const username = user.getAttribute('data-username');
+            const email = user.getAttribute('data-email');
 
-
-
-
+            if (username.includes(searchTerm) || email.includes(searchTerm)) {
+                user.style.display = 'block';
+            } else {
+                user.style.display = 'none';
+            }
+        });
+    });
 
     function filterIssues() {
         let activeFilters = [];

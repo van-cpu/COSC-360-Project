@@ -6,6 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
 /* Main Container */
 body{background-color: rgb(40, 40, 55); color: white;}
 #innerHTML {
@@ -16,6 +17,8 @@ body{background-color: rgb(40, 40, 55); color: white;}
     padding-left: 10%;
     border-radius: 5px;
 }
+
+
 
 /* Dashboard Styling */
 .dashboard {
@@ -31,6 +34,7 @@ body{background-color: rgb(40, 40, 55); color: white;}
     color: #ffffff;
     margin-bottom: 10px;
 }
+
 
 /* Links */
 .viewProb {
@@ -55,6 +59,7 @@ body{background-color: rgb(40, 40, 55); color: white;}
     font-size: 100%;
     border-radius: 15px;
 }
+
 
 /* Buttons */
 #buttonHolder {
@@ -130,3 +135,5 @@ li {
         padding: 8px 14px;
     }
 }
+
+
