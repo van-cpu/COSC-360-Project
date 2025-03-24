@@ -30,7 +30,6 @@
         <div class="dashboard">
             <h2>Search For Users: </h2>
             <div id="searchBar">
-                <img src="photos/search-2911.png">
                 <input type="text" id="searchInput" placeholder="Search Users by Name or Email...">
             </div>
             <div id="userListContainer">
@@ -40,45 +39,22 @@
                     $sql = "SELECT id, name, email FROM users";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
-                       echo "<div class='user' data-username='" . strtolower($row["name"]) . "' data-email='" . strtolower($row["email"]) . "'> 
-                       <p>UserID: " . $row["id"] . " - Username: " . $row["name"] . " - Email: " . $row["email"] . "</p>
-
+                        echo "<div class='user' data-username='" . strtolower($row["name"]) . "' data-email='" . strtolower($row["email"]) . "'> 
+                        <p>UserID: " . $row["id"] . " - Username: " . $row["name"] . " - Email: " . $row["email"] . "</p>
                         <form action='../PHP/update_user.php' method='POST' style='display: inline;'>
-                                <input type='hidden' name='user_id' value='" . $row["id"] . "'>
-                                <button type='submit' name='action' value='enable'>Enable</button>
-                            </form>
-                    
+                            <input type='hidden' name='user_id' value='" . $row["id"] . "'>
+                            <button type='submit' name='action' value='enable'>Enable</button>
+                        </form>
                         <form action='../PHP/update_user.php' method='POST' style='display: inline;'>
-                                <input type='hidden' name='user_id' value='" . $row["id"] . "'>
-                                <button type='submit' name='action' value='disable'>Remove</button>
-                            </form>
-                            </div>";
-                    }
+                            <input type='hidden' name='user_id' value='" . $row["id"] . "'>
+                            <button type='submit' name='action' value='disable'>Remove</button>
+                        </form>
+                      </div>";
+                 }
                 ?>
             </div>
         </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                document.getElementById('searchInput').addEventListener('input', function () {
-                    const searchTerm = this.value.toLowerCase();
-                    const users = document.querySelectorAll('#userListContainer .user'); // Updated selector
-
-                    users.forEach(user => {
-                        const username = user.getAttribute('data-username');
-                        const email = user.getAttribute('data-email');
-
-                        if (username.includes(searchTerm) || email.includes(searchTerm)) {
-                            user.style.display = 'block';
-                        } else {
-                            user.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        </script>
-
-        <br>
         <div id="viewReportedIssue" style="display: none;">
             <h2>View Issue</h2>
             <div id="innerText" class="textDiv">

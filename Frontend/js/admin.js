@@ -25,19 +25,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('searchInput').addEventListener('input', function () {
         const searchTerm = this.value.toLowerCase();
-        const users = document.querySelectorAll('#userListContainer .user'); // Updated selector
+        const users = document.querySelectorAll('#userListContainer .user'); // Ensure this selector matches your HTML
 
         users.forEach(user => {
             const username = user.getAttribute('data-username');
-            const email = user.getAttribute('data-email');
+            const email = user.getAttribute('data-email');  
 
             if (username.includes(searchTerm) || email.includes(searchTerm)) {
-                user.style.display = 'block';
+                user.style.display = 'flex';
             } else {
                 user.style.display = 'none';
             }
         });
     });
+
 
     function filterIssues() {
         let activeFilters = [];
