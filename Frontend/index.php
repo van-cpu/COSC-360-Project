@@ -13,45 +13,42 @@
     <div class="welcome">
         <?php
         session_start();
+        require '../PHP/db_connect.php';
         if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
         
         echo "<h1> Welcome ".$_SESSION['name']."</h1>"; 
         if ($_SESSION['role'] === 'employer') {
-            echo '<a href="create-job.php" id="createJobButton">Create Job</a>';
+            echo '<a href="create-job.php" id="createJob">Create Job</a>';
+            echo '<a href="logout.php" id="logoutLink">Logout</a>';  
         }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
-            echo  "<h1> Welcome Message </h1>";
+            echo  "<h1> Welcome </h1>";
         }
         
         ?>
 
         <p> Description of job website</p>
     </div>
-   
-
+ 
     <div class="card">
-        <h1> Popular Jobs </h1>
-        <div class="jobcard" onclick="jobClicked('job1')"> 
-            <h2> Job Listing 1 </h1>
-            <p> Description </p>
-            <button> See More </button>
-        </div>
-        <div class="jobcard" onclick="jobClicked('job1')">
-            <h2> Job Listing 2 </h1>
-            <p> Description </p>
-            <button> See More </button>
-        </div>
-        <div class="jobcard" onclick="jobClicked('job1')">
-            <h2> Job Listing 3 </h1>
-            <p> Description </p>
-            <button> See More </button>
-        </div>
-        <div class="jobcard" onclick="jobClicked('job1')">
-            <h2> Job Listing 4 </h1>
-            <p> Description </p>
-            <button> See More </button>
-        </div>
+    <?php
+    $result = $conn->query("SELECT id, title, job_description FROM jobs");
+        if ($result->num_rows > 0) {
+            $counter =0;
+            while ($row = $result->fetch_assoc()) {
+                if ($counter < 4) {
+                    $counter += 1;
+                echo '<div class="jobcard" onclick="window.location.href=\'job-details.php?id=' . $row['id'] . '\'">';
+                echo '<h2>' . htmlspecialchars($row['title']) . '</h2>';
+                echo '<p>' . htmlspecialchars($row['job_description']) . '</p>';
+                echo '<button> See More </button>';
+                echo '</div>';
+            }}
+        } else {
+            echo '<p>No job listings available.</p>';
+        }
+        ?>
     </div>
 
     <div class="card">

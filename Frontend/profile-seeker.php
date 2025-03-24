@@ -10,31 +10,59 @@
 <body>
 <?php
         session_start();
+        require '../PHP/db_connect.php';
         if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+        
+        if ($_SESSION['role'] === 'employer') {
+            echo '<a href="create-job.php" id="createJob">Create Job</a>';
+            echo '<a href="logout.php" id="logoutLink">Logout</a>';  
+        }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
         }
         
         ?>
+<?php>
+
     <div class="container">
         <h1>Profile Management</h1>
-        
+        <?php 
+
+        require_once "../PHP/db_connect.php";
+
+        $user_id = $_SESSION['user_id']; 
+        $user_name = $_SESSION['name']; 
+        $user_email = $_SESSION['email']; 
+ 
+
+        $stmt = $conn->prepare("SELECT profile_image FROM users WHERE id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $stmt->bind_result($profile_image);
+        $stmt->fetch();
+        $stmt->close();
+
+
+        ?>
         <!-- Personal Info Card -->
         <div class="card">
             <h2>Personal Info</h2>
-            <form id="personal-info-form" onsubmit="return validatePersonalInfo()">
+            
+            <form id="personal-info-form" action="../PHP/profile-seekerLog.php" method="POST" onsubmit="return validatePersonalInfo()" enctype="multipart/form-data">
+                <img src="../PHP/getImage.php" alt="Profile Image" class="profile-image"id="profile-image">
+                <div class="form-group">
+                <label for="profile-image">Change profile Image</label>
+                <input type="file" name="profile_image" accept="image/*">
+                </div>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="Name Here" required>
+                    <input type="text" id="name" name="name" value=<?php echo $user_name ?> placeholder="wad" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="email@example.com" required>
+                    <input type="email" id="email" name="email" value=<?php echo $user_email ?> required>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" value="123-456-7890" required>
-                </div>
+              
                 <button type="submit">Update Profile</button>
             </form>
         </div>

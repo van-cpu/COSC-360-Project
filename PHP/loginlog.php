@@ -42,6 +42,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
         $role = $_POST['role'];
 
+        $image = null;
+        $uploadError = null;
+        
+        if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+         
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mime = $finfo->file($_FILES['profile_image']['tmp_name']);
+            if (strpos($mime, 'image/') === 0) {
+                $image = file_get_contents($_FILES['profile_image']['tmp_name']);
+            } else {
+                $uploadError = "Invalid file type. Please upload an image.";
+            
+            }
+        } elseif (isset($_FILES['profile_image'])) {
+          }
+    
+        if ($uploadError) {
+            echo "<script>alert('$uploadError'); window.history.back();</script>";
+            exit();
+        }
+    
+
         $company_name = $location = $industry = $website = null;
         if ($role === "employer") {
             $company_name = trim($_POST['company-name']);
@@ -50,6 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $website = trim($_POST['website']);
         }
 
+
+        
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -58,10 +82,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->num_rows > 0) {
             die("This email is already registered. Try logging in.");
         }
-        $stmt->close();
 
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, company_name, location, industry, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+        if ($image !== null) {
+            $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, company_name, location, industry, website, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"); 
+            $stmt->bind_param("sssssssss", $name, $email, $password, $role, $company_name, $location, $industry, $website, $profile_image);
+        } else {
+            
+
+        $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, company_name, location, industry, website) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"); 
         $stmt->bind_param("ssssssss", $name, $email, $password, $role, $company_name, $location, $industry, $website);
+        }
+
+
 
         if ($stmt->execute()) {
             echo "<script>alert('Sign up successful, you can sign in now.'); window.location.href = '../Frontend/login.php';</script>";

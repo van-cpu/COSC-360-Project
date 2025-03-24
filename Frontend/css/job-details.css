@@ -1,3 +1,9 @@
+
+/* Header */
+h1{
+    color: white;
+}
+
 /* Main Container */
 #innerHTML {
     margin: 4%;
@@ -157,4 +163,11 @@ html {
     #submitButton {
         width: 90%;
     }
+}
+
+
+#editButton{
+    background-color: rgb(147, 147, 255);
+    padding: 12px;
+    border-radius: 15px;
 }

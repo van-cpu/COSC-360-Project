@@ -2,8 +2,8 @@
 $servername = "localhost";
 $port = "3306"; 
 $username = "root"; 
-$password = ""; 
-$database = "project";
+$password = "Super@wesome12"; 
+$database = "jobboard";
 
 
 $conn = new mysqli($servername, $username, $password, $database, $port);
