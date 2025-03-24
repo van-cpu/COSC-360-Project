@@ -171,3 +171,12 @@ html {
     padding: 12px;
     border-radius: 15px;
 }
+
+#subApp{ 
+    color: white;
+    background-color: rgba(50, 50, 70, 0.8);
+    border-radius: 5px;
+    padding: 5%;
+    margin: 5%;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    }
