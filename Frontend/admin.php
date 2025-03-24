@@ -26,6 +26,20 @@
             <h3 id="curSiteUser">Current Site Users: 0</h3>
         </div>
 
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <h3 id="users">Users:</h3>
+            <?php
+                require '.../PHP/db_connect.php';
+
+                $sql = "SELECT id, name, email FROM users";
+                $result = $conn->query($sql);
+                while ($row = $result->fetch_assoc()) {
+                    echo "<p>ID: " . $row["id"] . " | Name: " . $row["name"] . " | Email: " . $row["email"] . "</p>";
+                }
+            ?>
+        </div>
+
         <br>
         <div id="viewReportedIssue" style="display: none;">
             <h2>View Issue</h2>
