@@ -18,7 +18,8 @@
             echo '<a href="logout.php" id="logoutLink">Logout</a>';  
         }
         }else{
-            echo '<a href="login.php" id="loginLink">Login</a>';      
+            header("Location: login.php");
+            exit();   
         }
         
         ?>
