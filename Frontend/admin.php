@@ -10,11 +10,12 @@
 </head>
 
 <body>
-<?php
+    <?php
         session_start();
-        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
-        }else{
-            echo '<a href="login.php" id="loginLink">Login</a>';      
+        if(!isset($_SESSION['user_logged_in']) || !$_SESSION['user_logged_in'] === true){
+            echo '<a href="login.php" id="loginLink">Login</a>';
+        }elseif(!$_SESSION['role'] === "admin"){
+            echo '<a href="login.php" id="loginLink">Login</a>';
         }
         ?>
     <div id="innerHTML">
@@ -26,7 +27,34 @@
             <h3 id="curSiteUser">Current Site Users: 0</h3>
         </div>
 
-        <br>
+        <div class="dashboard">
+            <h2>Search For Users: </h2>
+            <div id="searchBar">
+                <input type="text" id="searchInput" placeholder="Search Users by Name or Email...">
+            </div>
+            <div id="userListContainer">
+                <?php
+                    require "../PHP/db_connect.php";
+
+                    $sql = "SELECT id, name, email FROM users";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='user' data-username='" . strtolower($row["name"]) . "' data-email='" . strtolower($row["email"]) . "'> 
+                        <p>UserID: " . $row["id"] . " - Username: " . $row["name"] . " - Email: " . $row["email"] . "</p>
+                        <form action='../PHP/update_user.php' method='POST' style='display: inline;'>
+                            <input type='hidden' name='user_id' value='" . $row["id"] . "'>
+                            <button type='submit' name='action' value='enable'>Enable</button>
+                        </form>
+                        <form action='../PHP/update_user.php' method='POST' style='display: inline;'>
+                            <input type='hidden' name='user_id' value='" . $row["id"] . "'>
+                            <button type='submit' name='action' value='disable'>Remove</button>
+                        </form>
+                      </div>";
+                 }
+                ?>
+            </div>
+        </div>
+
         <div id="viewReportedIssue" style="display: none;">
             <h2>View Issue</h2>
             <div id="innerText" class="textDiv">
