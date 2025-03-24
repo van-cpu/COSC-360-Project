@@ -19,13 +19,15 @@ function searchJobs(page = 1, silent = false) {
                 data.jobs.forEach(job => {
                     const jobCard = document.createElement('div');
                     jobCard.className = 'jobcard';
-                    jobCard.onclick = () => jobClicked(job.id);
+                
                     jobCard.innerHTML = `
                         <h2>${job.title}</h2>
-                        <p>${job.job_description}</p>
+                        <p>${job.job_description.substring(0, 100)}...</p>
                         <p><strong>Company:</strong> ${job.company}</p>
                         <p><strong>Location:</strong> ${job.location || 'N/A'}</p>
+                        <button onclick="window.location.href='job-details.php?id=${job.id}'">Learn More</button>
                     `;
+                
                     jobContainer.appendChild(jobCard);
                 });
 

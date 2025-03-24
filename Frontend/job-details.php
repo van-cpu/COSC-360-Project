@@ -25,11 +25,10 @@
         }
         
         ?>
-<?php>
+
 
 <?php
 
-require '../PHP/db_connect.php';
 
 
 $job_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
