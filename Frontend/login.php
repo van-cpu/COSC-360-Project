@@ -61,7 +61,7 @@
                     <input type="password" id="signup-confirm-password" name="confirm-password" required>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="display: none;">
                 <label for="profile-image">Profile Image (optional):</label>
                 <input type="file" name="profile_image" accept="image/*">
                 </div>

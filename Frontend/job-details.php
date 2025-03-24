@@ -87,6 +87,28 @@ if (!$is_logged_in) {
         <?php if ($is_employer): ?>
             <button id="editButton" onclick="window.location.href='edit-job.php?id=<?php echo $job_id; ?>'">Edit Job</button>
         <?php endif; ?>
+        <?php 
+        if ($is_employer) {echo "<div id='subApp'>";
+            echo "<h2>Submitted Applications: </h2>";
+        
+            $app_stmt = $conn->prepare("SELECT users.name, users.location, users.email, applications.cover_letter, applications.applied_at FROM applications JOIN users ON applications.user_id = users.id WHERE applications.job_id = ?");
+            $app_stmt->bind_param("i", $job_id);
+            $app_stmt->execute();
+            $app_stmt->bind_result($applicant_name, $applicant_location, $applicant_email, $cover_letter, $applied_at);
+        
+            while ($app_stmt->fetch()) {
+                echo "<br><br><div class='application'>";
+                echo "<p><strong>Applicant:</strong> " . htmlspecialchars($applicant_name) . "</p>";
+                echo "<p><strong>Cover Letter:</strong> " . nl2br(htmlspecialchars($cover_letter)) . "</p>";
+                echo "<p><strong>Email:</strong> " . nl2br(htmlspecialchars($applicant_email)) . "</p>";
+                echo "<p><strong>Applied on:</strong> " . htmlspecialchars($applied_at) . "</p>";
+                echo "</div>";
+            }
+        echo "</div>";
+            $app_stmt->close();
+        }
+        
+        ?>
     </div>
 
     <script src="js/common.js"></script>
