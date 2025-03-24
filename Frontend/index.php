@@ -15,11 +15,11 @@
         session_start();
         require '../PHP/db_connect.php';
         if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
-        
+        echo '<a href="logout.php" id="logoutLink">Logout</a>';
         echo "<h1> Welcome ".$_SESSION['name']."</h1>"; 
         if ($_SESSION['role'] === 'employer') {
             echo '<a href="create-job.php" id="createJob">Create Job</a>';
-            echo '<a href="logout.php" id="logoutLink">Logout</a>';  
+              
         }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
