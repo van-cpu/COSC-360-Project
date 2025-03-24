@@ -3,7 +3,8 @@ session_start();
 require '../PHP/db_connect.php';
 
 if (!isset($_SESSION['user_logged_in']) || $_SESSION['role'] !== 'job-seeker') {
-    echo "You must be logged in as a job seeker to apply.";
+    echo "<script>alert('You must be signed in as a job-seeker!'); 
+    window.history.back();</script>";
     exit;
 }
 
@@ -17,7 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("iis", $job_id, $user_id, $cover_letter);
     
     if ($stmt->execute()) {
-        echo "Application submitted successfully!";
+        echo "<script>
+        alert('Application submitted successfully!');
+        window.location.href = '../Frontend/index.php';
+    </script>";
+    exit;
     } else {
         echo "Error submitting application.";
     }
