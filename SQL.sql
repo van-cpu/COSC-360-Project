@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
     location VARCHAR(255),
     industry VARCHAR(100),
     website VARCHAR(255),
-    profile_image BLOB
+    profile_image BLOB,
+    profile_clicks INT DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS jobs (
@@ -21,6 +22,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     requirements TEXT NOT NULL,
     benefits TEXT NOT NULL,
     job_description TEXT NOT NULL, 
+    click_count INT DEFAULT 0,
     salary INT,
     posted_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
