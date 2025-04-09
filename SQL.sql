@@ -38,3 +38,14 @@ CREATE TABLE IF NOT EXISTS bookmarks (
     FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
     UNIQUE(user_id, job_id)
 );
+
+CREATE TABLE IF NOT EXISTS applications (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    job_id INT NOT NULL,
+    user_id INT NOT NULL,
+    cover_letter TEXT,
+    resume LONGBLOB,
+    applied_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

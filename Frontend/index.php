@@ -33,7 +33,7 @@
  
     <div class="card">
     <?php
-    $result = $conn->query("SELECT id, title, job_description FROM jobs");
+    $result = $conn->query("SELECT id, title, job_description FROM jobs ORDER BY click_count DESC LIMIT 4");
         if ($result->num_rows > 0) {
             $counter =0;
             while ($row = $result->fetch_assoc()) {
