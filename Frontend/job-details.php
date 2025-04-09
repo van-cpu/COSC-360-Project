@@ -48,8 +48,8 @@ $is_employer = $is_logged_in && $_SESSION['role'] === 'employer' && $_SESSION['u
 if (!$is_logged_in) {
     echo '<a href="login.php" id="loginLink">Login</a>';
 }
-if(!$is_employer && !isset($_SESSION['user_clicked' . $user_id])){//so it only goes up if they are not the employer
-    $_SESSION['user_clicked'.$user_id] = true;
+if(!$is_employer && !isset($_SESSION['user_clicked' .$user_id.$job_id])){//so it only goes up if they are not the employer
+    $_SESSION['user_clicked'.$user_id.$job_id] = true;
     $click_count +=1;
 
     $stmt = $conn->prepare("UPDATE jobs SET click_count = ? WHERE id = ?");
