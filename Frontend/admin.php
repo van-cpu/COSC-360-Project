@@ -12,6 +12,7 @@
 <body>
     <?php
         session_start();
+        require "../PHP/db_connect.php";
         if(!isset($_SESSION['user_logged_in']) || !$_SESSION['user_logged_in'] === true){
             echo '<a href="login.php" id="loginLink">Login</a>';
         }elseif(!$_SESSION['role'] === "admin"){
@@ -23,8 +24,24 @@
 
         <div class="dashboard">
             <h2>Dashboard</h2>
-            <h3 id="curSiteList">Current Site Listings: 0</h3>
-            <h3 id="curSiteUser">Current Site Users: 0</h3>
+            <?php 
+            
+        $stmt = $conn->prepare("SELECT COUNT(users.id) FROM users WHERE users.status = 'active' GROUP BY users.status ");
+        $stmt->execute();
+        $stmt->bind_result($activeUsersCount);
+        $stmt->fetch();
+        $stmt->close();
+        if($activeUsersCount == null){$activeUsersCount =0;}
+
+        $stmt = $conn->prepare("SELECT COUNT(jobs.id) FROM jobs");
+        $stmt->execute();
+        $stmt->bind_result($jobsCount);
+        $stmt->fetch();
+        $stmt->close();
+        if($activeUsersCount == null){$activeUsersCount =0;}
+            ?>
+            <h3 id="curSiteList">Current Site Listings: <?php echo $jobsCount?></h3>
+            <h3 id="curSiteUser">Current Site Users: <?php echo $activeUsersCount?></h3>
         </div>
 
         <div class="dashboard">
@@ -34,9 +51,9 @@
             </div>
             <div id="userListContainer">
                 <?php
-                    require "../PHP/db_connect.php";
+                    
 
-                    $sql = "SELECT id, name, email FROM users";
+                    $sql = "SELECT id, name, email, status FROM users";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
                         echo "<div class='user' data-username='" . strtolower($row["name"]) . "' data-email='" . strtolower($row["email"]) . "'> 
@@ -47,14 +64,15 @@
                         </form>
                         <form action='../PHP/update_user.php' method='POST' style='display: inline;'>
                             <input type='hidden' name='user_id' value='" . $row["id"] . "'>
-                            <button type='submit' name='action' value='disable'>Remove</button>
+                            <button type='submit' name='action' value='disable'>Disable</button>
                         </form>
+                        <p>" . strtolower($row["status"]) . "</p>
                       </div>";
                  }
                 ?>
             </div>
         </div>
-
+<!--
         <div id="viewReportedIssue" style="display: none;">
             <h2>View Issue</h2>
             <div id="innerText" class="textDiv">
@@ -116,6 +134,6 @@
             </ul>
         </div>
     </div>
-
+                -->
     <script src="js/common.js"></script>
     <script src="js/admin.js"></script>
