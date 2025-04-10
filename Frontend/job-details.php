@@ -89,11 +89,11 @@ $stmt->close();
         <div id="innerText" class="textDiv">
             <h2>Job Details</h2>
             <br>
-            <p id="jobLocation"><?php echo htmlspecialchars($job_location); ?></p>
-            <p id="salaryRange"><?php echo htmlspecialchars($salary); ?></p>
-            <p id="jobDescription"><?php echo htmlspecialchars($job_description); ?></p>
-            <p id="reqQual"><?php echo htmlspecialchars($requirements); ?></p>
-            <p id="Bene"><?php echo htmlspecialchars($benefits); ?></p>
+            <p id="jobLocation"><?php echo 'Location: '.htmlspecialchars($job_location); ?></p>
+            <p id="salaryRange"><?php echo 'Salary: '.htmlspecialchars($salary); ?></p>
+            <p id="jobDescription"><?php echo 'Job Description: '. htmlspecialchars($job_description); ?></p>
+            <p id="reqQual"><?php echo 'Requirements: '.htmlspecialchars($requirements); ?></p>
+            <p id="Bene"><?php echo 'Benifits: '.htmlspecialchars($benefits); ?></p>
         </div>
         <div class="textDiv">
             <p id="jobDate">Job listed on: <?php echo htmlspecialchars($posted_at); ?></p>
