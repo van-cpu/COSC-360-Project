@@ -71,11 +71,38 @@
             </form>
         </div>
           <?PHP        if ($_SESSION['role'] === 'employer') {//is an employer
-            echo " <h2> Current job postings </h2>";
+  echo '<h1>Current Applicants: </h1>';
 
+  $stmt = $conn->prepare("SELECT users.name, users.email, applications.cover_letter, applications.resume, applications.applied_at, jobs.id, jobs.title, jobs.company, jobs.location 
+  FROM applications 
+  JOIN jobs ON jobs.id = applications.job_id 
+  JOIN users ON users.id = applications.user_id 
+  WHERE jobs.user_id = ?");
+
+  $stmt->bind_param("i", $user_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        echo '<div class="card">';
+        echo '<br><h2>Applicant: ' . htmlspecialchars($row['name']) . '</h2>';
+        echo '<br><p>Email: ' . htmlspecialchars($row['email']) . '</p>';
+        echo '<br><p>Applied for: <strong>' . htmlspecialchars($row['title']) . '</strong> at ' . htmlspecialchars($row['company']) . '</p>';
+        echo '<br><p>Location: ' . htmlspecialchars($row['location']) . '</p>';
+        echo '<br><p>Applied on: ' . htmlspecialchars($row['applied_at']) . '</p>';
+        echo '<br><p>Text: ' . htmlspecialchars($row['cover_letter']) . '</p>';
+
+        echo '</div>';
+      }
+  } else {
+      echo '<p>No applicants yet.</p>';
+  }
         }else{// is an employee
             echo '<h1>Current applications: </h1>';
-            $stmt = $conn->prepare("SELECT jobs.id, jobs.title, jobs.company, jobs.location, jobs.job_description FROM applications JOIN jobs ON jobs.id = applications.job_id WHERE applications.user_id = ?");
+            $stmt = $conn->prepare("SELECT jobs.id, jobs.title, jobs.company, jobs.location, jobs.job_description 
+            FROM applications JOIN jobs ON jobs.id = applications.job_id 
+            WHERE applications.user_id = ?");
             $stmt->bind_param("i", $user_id);
             $stmt->execute();
             $result = $stmt->get_result();
