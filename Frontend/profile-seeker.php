@@ -23,7 +23,6 @@
         }
         
         ?>
-<?php>
 
     <div class="container">
         <h1>Profile Management</h1>
@@ -67,7 +66,8 @@
                 <button type="submit">Update Profile</button>
             </form>
         </div>
-
+        <div class="card">
+    </div>
         <!-- Job Preferences Card -->
         <div class="card">
             <h2>Job Preferences</h2>
