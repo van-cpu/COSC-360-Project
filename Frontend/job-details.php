@@ -82,7 +82,7 @@ $stmt->close();
             <label class="option"><input type="checkbox" name="reportReason" value="other"> Other</label><br>
             <button type="submit" id="submitButton">Submit</button>
         </form>
-        <img src="../PHP/getJobImage.php" alt="Profile Image" id="companyLogo">
+        <img src="../PHP/getJobImage.php" alt="Profile Image" class="clickable-hover" id="companyLogo" onclick="window.location.href='profile-employer.php?id=<?php echo $user_id; ?>'">
         <h2 id="companyName"><?php echo htmlspecialchars($company_name); ?></h2>
         <h1 id="jobTitle"><?php echo htmlspecialchars($job_title); ?></h1>
         <h2 style="color: white;"> Clicks since Posting: <?php echo $click_count ?></h2>
