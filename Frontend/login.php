@@ -72,6 +72,7 @@
                     <select id="signup-role" name="role" required onchange="toggleEmployerFields()">
                         <option value="job-seeker">Job Seeker</option>
                         <option value="employer">Employer</option>
+                        <option value="employer">Admin</option>
                     </select>
                 </div>
             

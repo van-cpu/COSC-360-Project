@@ -12,10 +12,14 @@
 <body>
     <?php
         session_start();
-        if(!isset($_SESSION['user_logged_in']) || !$_SESSION['user_logged_in'] === true){
-            echo '<a href="login.php" id="loginLink">Login</a>';
-        }elseif(!$_SESSION['role'] === "admin"){
-            echo '<a href="login.php" id="loginLink">Login</a>';
+        if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+            header('Location: login.php');
+            exit;
+        }
+        // If the user is not an admin
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+            header('Location: login.php');
+            exit;
         }
         ?>
     <div id="innerHTML">

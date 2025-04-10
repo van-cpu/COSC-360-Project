@@ -2,9 +2,9 @@
 $hostname = "localhost";
 $port = "3306"; 
 
-$username = "narora08"; 
-$password = "narora08"; 
-$database = "narora08";
+$username = "root"; 
+$password = ""; 
+$database = "test";
 
 
 try{

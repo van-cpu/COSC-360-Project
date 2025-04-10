@@ -23,7 +23,7 @@
         }
         
         ?>
-<?php>
+
 
     <div class="container">
         <h1>Profile Management</h1>
@@ -66,6 +66,14 @@
               
                 <button type="submit">Update Profile</button>
             </form>
+        </div>
+
+        <!-- Resume -->
+        <div class="card">
+            <h2>Resume</h2>
+            <button onclick="addResume()">+</button>
+            <p>Please upload your resume</p>
+            <div id="resume-section"></div>
         </div>
 
         <!-- Job Preferences Card -->

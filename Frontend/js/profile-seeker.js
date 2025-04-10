@@ -1,3 +1,4 @@
+let resume = false;
 let jobPreferenceCount = 0;
 let experienceCount = 0;
 let skillsCount = 0;
@@ -24,6 +25,27 @@ function isValidText(text) {
 
 function isValidDate(date) {
     return date && !isNaN(new Date(date).getTime());
+}
+
+// Resume
+function addResume(){
+    if (resume) return; // prevent multiple resume uploads
+    resume = true;
+
+    const resumeSection = document.getElementById('resume-section');
+    const entry = document.createElement('div');
+    entry.className = 'entry';
+    entry.innerHTML = `
+        <input type="file" id="resume-upload" name="resume-upload" accept="application/pdf" required>
+        <button onclick="removeResume(this)">Remove</button>
+    `;
+    resumeSection.appendChild(entry);
+   
+}
+
+function removeResume(button) {
+    resume = false;
+    button.parentElement.remove();
 }
 
 // Job Preferences
