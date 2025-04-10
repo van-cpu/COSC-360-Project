@@ -28,7 +28,7 @@
         
         ?>
 
-        <p> Description of job website</p>
+        <p> Search for jobs, employers and post your job listings!</p>
     </div>
  
     <div class="card">
