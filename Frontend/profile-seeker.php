@@ -17,6 +17,10 @@
             echo '<a href="create-job.php" id="createJob">Create Job</a>';
             echo '<a href="logout.php" id="logoutLink">Logout</a>';  
         }
+        else if ($_SESSION['role'] === 'admin') {
+            header("Location: admin.php");
+            exit();    
+         }
         }else{
             header("Location: login.php");
             exit();   

@@ -13,11 +13,13 @@
     <?php
         session_start();
         require "../PHP/db_connect.php";
-        if(!isset($_SESSION['user_logged_in']) || !$_SESSION['user_logged_in'] === true){
-            echo '<a href="login.php" id="loginLink">Login</a>';
-        }elseif(!$_SESSION['role'] === "admin"){
-            echo '<a href="login.php" id="loginLink">Login</a>';
-        }
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
+            echo '<a href="logout.php" id="logoutLink">Logout</a>';
+            }else{
+                if ($_SESSION['role'] !== 'admin') {
+                header("Location: login.php");
+                exit();}
+            }
         ?>
     <div id="innerHTML">
         <h1>Admin Panel</h1>
