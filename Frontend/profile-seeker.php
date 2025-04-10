@@ -17,13 +17,16 @@
             echo '<a href="create-job.php" id="createJob">Create Job</a>';
             echo '<a href="logout.php" id="logoutLink">Logout</a>';  
         }
+        else if ($_SESSION['role'] === 'admin') {
+            header("Location: admin.php");
+            exit();    
+         }
         }else{
             header("Location: login.php");
             exit();   
         }
         
         ?>
-<?php>
 
     <div class="container">
         <h1>Profile Management</h1>
@@ -67,7 +70,8 @@
                 <button type="submit">Update Profile</button>
             </form>
         </div>
-
+        <div class="card">
+    </div>
         <!-- Job Preferences Card -->
         <div class="card">
             <h2>Job Preferences</h2>

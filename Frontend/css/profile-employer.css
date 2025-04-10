@@ -30,7 +30,11 @@ h1 {
     color: #ffffff;
     margin-bottom: 20px;
 }
-
+h3 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
 /* Card Styling */
 .card {
     background: rgba(40, 40, 55, 0.8);

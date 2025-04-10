@@ -9,67 +9,75 @@
 </head>
 <body>
 <?php
+        require_once "../PHP/db_connect.php";
         session_start();
+        $employer_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
         if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true){
-        
+        if($_SESSION['user_id'] == $employer_id){header("Location: profile-seeker.php");}
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
         }
+
+        $stmt = $conn->prepare("SELECT name,email,company_name,location,industry,website,profile_clicks FROM users WHERE id = ?");
+        $stmt->bind_param("i", $employer_id);
+        $stmt->execute();
+        $stmt->bind_result($name,$email,$company,$location,$industry,$website,$profile_clicks);
+        $stmt->fetch();
+        $stmt->close();
+
+        if(!isset($_SESSION['user_clicked' .$employer_id])){//so it only goes up if they are not the employer
+            $_SESSION['user_clicked'.$employer_id] = true;
+            $profile_clicks +=1;
         
+            $stmt = $conn->prepare("UPDATE users SET profile_clicks = ? WHERE id = ?");
+            $stmt->bind_param("ii", $profile_clicks, $employer_id);
+            $stmt->execute();
+            $stmt->close();
+        }        
         ?>
     <div class="container">
-        <h1>Employer Profile Management</h1>
+        <h1><?php echo $name?>'s Profile</h1>
         
         <!-- Company Info Card -->
         <div class="card">
             <h2>Company Info</h2>
-            <form id="company-info-form" onsubmit="return validateCompanyInfo()">
-                <div class="form-group">
-                    <label for="company-name">Company Name</label>
-                    <input type="text" id="company-name" name="company-name" value="Company Name Here" required>
-                </div>
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" name="location" value="City, State" required>
-                </div>
-                <div class="form-group">
-                    <label for="industry">Industry</label>
-                    <select id="industry" name="industry" required>
-                        <option value="technology">Technology</option>
-                        <option value="healthcare">Healthcare</option>
-                        <option value="finance">Finance</option>
-                        <option value="education">Education</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="website">Website (Optional)</label>
-                    <input type="url" id="website" name="website" value="https://www.company.com">
-                </div>
-                <button type="submit">Update Company Info</button>
-            </form>
+            <h3>Email contact:  <?php echo $email?></h3>
+            <h3>Comapny Name: <?php echo $company?></h3>
+            <h3>Location: <?php echo $location?> </h3>
+            <h3>Industry: <?php echo $industry?></h3>
+            <h3>Website: <?php echo $website?></h3>
+            <h3>Profile Clicks: <?php echo $profile_clicks?></h3>
+            
         </div>
 
-        <!-- Job Postings Card -->
-        <div class="card">
-            <h2>Job Postings</h2>
-            <button onclick="addJobPosting()">Add New Job Posting</button>
-            <p>Manage your job listings here.</p>
-            <div id="job-postings-list"></div>
-        </div>
+      <?php 
+              $stmt = $conn->prepare("SELECT id, title, company, location, salary, posted_at FROM jobs WHERE user_id = ?");
+              $stmt->bind_param("i", $employer_id);
 
-        <!-- Applicant Tracking Card -->
-        <div class="card">
-            <h2>Applicant Tracking</h2>
-            <p>View and manage job applications received.</p>
-            <div id="applicants-list">
-                <div class="applicant-entry">
-                    <p>Applicant: John Doe (john.doe@example.com) - Applied for: Software Engineer - Status: Pending</p>
-                    <button onclick="showApplicantDetails(this)">View Details</button>
-                </div>
-                <!-- More applicant entries can be added dynamically -->
+              $stmt->execute();
+              $result = $stmt->get_result();
+              $stmt->close();
+      
+      ?>
+    <div>
+            <h3>Job Postings</h3>
+            <div id="job-postings-list">
+                <ol>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <li class="card" onclick="window.location.href='job-details.php?id=<?php echo $row['id']; ?>'">
+                            Title: <?php echo htmlspecialchars($row['title']); ?><br>
+                            Company: <?php echo htmlspecialchars($row['company']); ?><br>
+                            Location: <?php echo htmlspecialchars($row['location']); ?><br>
+                            Salary: <?php echo htmlspecialchars($row['salary']); ?><br>
+                            Posted At: <?php echo htmlspecialchars($row['posted_at']); ?>
+                            <h3> Apply </h3>
+                        </li>
+                    <?php endwhile; ?>
+                </ol>
             </div>
-        </div>
+    </div>
+
+
     </div>
 
     <script src="./js/profile-employer.js"></script>

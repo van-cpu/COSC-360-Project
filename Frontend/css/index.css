@@ -61,7 +61,7 @@ body {
     width: 40%;
     height: 250px;
 }
-.jobcard button{
+.jobcard button, .employercard button{
     border-radius: 9px;
     align-items: center;
     border:none;

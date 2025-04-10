@@ -103,5 +103,23 @@ ul{display: block;
     background-color: rgb(139, 0, 0);
 }
 
+#adminPanel {
+    position: absolute;
+    top: 140px; 
+    right: 40px;
+    background-color: rgb(125, 143, 245); 
+    border: black 1px solid;
+    color: white; 
+    padding: 10px 15px;
+    text-decoration: none; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    z-index: 1000;
+}
+
+#adminPanel:hover {
+    background-color: rgb(139, 0, 0);
+}
+
 #profile-image{max-width: 200px;
 width: 200px;}

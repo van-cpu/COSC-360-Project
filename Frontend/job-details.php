@@ -34,13 +34,13 @@
 $job_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 
-$stmt = $conn->prepare("SELECT title, company, location, salary, job_description, requirements, benefits, posted_at, user_id FROM jobs WHERE id = ?");
+$stmt = $conn->prepare("SELECT title, company, location, salary, job_description, requirements, benefits, posted_at, user_id, click_count FROM jobs WHERE id = ?");
 $stmt->bind_param("i", $job_id);
 $stmt->execute();
-$stmt->bind_result($job_title, $company_name, $job_location, $salary, $job_description, $requirements, $benefits, $posted_at, $user_id);
+$stmt->bind_result($job_title, $company_name, $job_location, $salary, $job_description, $requirements, $benefits, $posted_at, $user_id, $click_count);
 $stmt->fetch();
 $stmt->close();
-
+$_SESSION['userid_curjob'] = $user_id;
 
 $is_logged_in = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true;
 $is_employer = $is_logged_in && $_SESSION['role'] === 'employer' && $_SESSION['user_id'] == $user_id;
@@ -48,6 +48,25 @@ $is_employer = $is_logged_in && $_SESSION['role'] === 'employer' && $_SESSION['u
 if (!$is_logged_in) {
     echo '<a href="login.php" id="loginLink">Login</a>';
 }
+if(!$is_employer && !isset($_SESSION['user_clicked' .$user_id.$job_id])){//so it only goes up if they are not the employer
+    $_SESSION['user_clicked'.$user_id.$job_id] = true;
+    $click_count +=1;
+
+    $stmt = $conn->prepare("UPDATE jobs SET click_count = ? WHERE id = ?");
+    $stmt->bind_param("ii", $click_count, $job_id);
+    $stmt->execute();
+    $stmt->close();
+}
+
+$stmt = $conn->prepare("SELECT profile_image FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($profile_image);
+$stmt->fetch();
+$stmt->close();
+
+
+
 ?>
     <div id="innerHTML">
         <div id="iconCont">
@@ -63,11 +82,10 @@ if (!$is_logged_in) {
             <label class="option"><input type="checkbox" name="reportReason" value="other"> Other</label><br>
             <button type="submit" id="submitButton">Submit</button>
         </form>
-     
-        <img src="../Frontend/photos/defaultimage.png" alt="Default Logo" id="companyLogo">
+        <img src="../PHP/getJobImage.php" alt="Profile Image" id="companyLogo">
         <h2 id="companyName"><?php echo htmlspecialchars($company_name); ?></h2>
         <h1 id="jobTitle"><?php echo htmlspecialchars($job_title); ?></h1>
-
+        <h2 style="color: white;"> Clicks since Posting: <?php echo $click_count ?></h2>
         <div id="innerText" class="textDiv">
             <h2>Job Details</h2>
             <br>

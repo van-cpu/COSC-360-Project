@@ -7,9 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $action = $_POST["action"];
 
         if ($action == "enable") {
-            $sql = "UPDATE users SET status = 'enabled' WHERE id = ?";
+            $sql = "UPDATE users SET status = 'active' WHERE id = ?";
         } elseif ($action == "disable") {
-            $sql = "DELETE FROM users WHERE id = ?";
+            $sql = "UPDATE users SET status = 'inactive' WHERE id = ?";
         }
 
         if (isset($sql)) {
@@ -25,6 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-header("Location: admin.php"); // Redirect back to admin panel
+header("Location: ../Frontend/admin.php"); // Redirect back to admin panel
 exit();
 ?>
