@@ -8,7 +8,7 @@ document.body.innerHTML += `
         <li><a href="index.php"class="link">Home</a></li>
         <li><a href="job-listings.php" class="link">Job listings</a></li>
         <li><a href="profile-seeker.php"class="link">Profile</a></li>
-        <li><a href="admin.php"class="link">Admin Panel</a></li>
+        
     </ul>
 </nav>
 `;

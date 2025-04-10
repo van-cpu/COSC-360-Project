@@ -20,6 +20,9 @@
         if ($_SESSION['role'] === 'employer') {
             echo '<a href="create-job.php" id="createJob">Create Job</a>';
               
+        }else if ($_SESSION['role'] === 'admin') {
+            echo '<a href="admin.php" id="adminPanel">Admin Panel</a>';
+              
         }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
