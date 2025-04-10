@@ -25,7 +25,15 @@
         $stmt->fetch();
         $stmt->close();
 
-
+        if(!isset($_SESSION['user_clicked' .$employer_id])){//so it only goes up if they are not the employer
+            $_SESSION['user_clicked'.$employer_id] = true;
+            $profile_clicks +=1;
+        
+            $stmt = $conn->prepare("UPDATE users SET profile_clicks = ? WHERE id = ?");
+            $stmt->bind_param("ii", $profile_clicks, $employer_id);
+            $stmt->execute();
+            $stmt->close();
+        }        
         ?>
     <div class="container">
         <h1><?php echo $name?>'s Profile</h1>
