@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     job_description TEXT NOT NULL, 
     salary INT,
     posted_at TIMESTAMP DEFAULT NOW(),
+    industry VARCHAR(255);
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
