@@ -70,40 +70,35 @@
                 <button type="submit">Update Profile</button>
             </form>
         </div>
-        <div class="card">
-    </div>
-        <!-- Job Preferences Card -->
-        <div class="card">
-            <h2>Job Preferences</h2>
-            <button onclick="addJobPreference()">+</button>
-            <p>What kind of job preferences do you have?</p>
-            <div id="job-preferences-list"></div>
-        </div>
+          <?PHP        if ($_SESSION['role'] === 'employer') {//is an employer
+            echo " <h2> Current job postings </h2>";
 
-        <!-- Experience Card -->
-        <div class="card">
-            <h2>Experience</h2>
-            <button onclick="showExperienceForm()">+</button>
-            <p>What kind of experience do you have?</p>
-            <div id="experience-list"></div>
-        </div>
+        }else{// is an employee
+            echo '<h1>Current applications: </h1>';
+            $stmt = $conn->prepare("SELECT jobs.id, jobs.title, jobs.company, jobs.location, jobs.job_description FROM applications JOIN jobs ON jobs.id = applications.job_id WHERE applications.user_id = ?");
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
 
-        <!-- Skills Card -->
-        <div class="card">
-            <h2>Skills</h2>
-            <button onclick="addSkill()">+</button>
-            <p>What kind of skills do you have?</p>
-            <div id="skills-list"></div>
-        </div>
+                while ($row = $result->fetch_assoc()) {
 
-        <!-- Education Card -->
-        <div class="card">
-            <h2>Education</h2>
-            <button onclick="showEducationForm()">+</button>
-            <p>What education do you have?</p>
-            <div id="education-list"></div>
-        </div>
-    </div>
+                        echo '<br><div onclick="window.location.href=\'job-details.php?id=' . $row['id']  . '\'">';                        
+                        echo '<div class="card">';
+                        echo '<h2> Job title: ' . htmlspecialchars($row['title']) ;
+                        echo '<br> <h3> Company: ' . htmlspecialchars($row['company']) ;
+                        echo '<br> <h3> Location: ' . htmlspecialchars($row['location']) ;
+                        echo '<br> <h3> Job Description: ' . htmlspecialchars($row['job_description']) ;
+                        echo '</div>';
+                    }
+            } else {
+                echo '<p>No job listings available.</p>';
+            }
+
+        }
+        
+        ?>
+
 
     <script src="./js/profile-seeker.js"></script>
     <script src="js/common.js"></script>
