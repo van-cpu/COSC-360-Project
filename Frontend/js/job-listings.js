@@ -2,9 +2,12 @@ let currentPage = 1;
 
 function searchJobs(page = 1, silent = false) {
     const keyword = document.getElementById('searchInput').value;
+    const location = document.getElementById('filter-location').value;
+    const industry = document.getElementById('filter-industry').value;
+    const sortBy = document.getElementById('sort-by').value;
     currentPage = page;
 
-    fetch(`../PHP/search-jobs.php?keyword=${encodeURIComponent(keyword)}&page=${page}`)
+    fetch(`../PHP/search-jobs.php?keyword=${encodeURIComponent(keyword)}&page=${page}&location=${location}&industry=${industry}&sort=${sortBy}`)
         .then(response => response.json())
         .then(data => {
             if (!silent) {
@@ -35,13 +38,22 @@ function searchJobs(page = 1, silent = false) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // Track latest known job count
             window.latestJobCount = data.totalCount;
         })
         .catch(error => {
             console.error('Error fetching jobs:', error);
         });
 }
+
+// Add these listeners after DOM is ready
+document.addEventListener("DOMContentLoaded", function () {
+    searchJobs();
+    document.getElementById('searchInput').addEventListener('input', () => searchJobs(1));
+    document.getElementById('filter-location').addEventListener('change', () => searchJobs(1));
+    document.getElementById('filter-industry').addEventListener('change', () => searchJobs(1));
+    document.getElementById('sort-by').addEventListener('change', () => searchJobs(1));
+});
+
 
 
 function renderPagination(totalPages, currentPage) {

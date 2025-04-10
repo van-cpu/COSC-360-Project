@@ -42,15 +42,46 @@
         <input type="text" id="searchInput" placeholder="Job Title...">
     </div>
 
-    <div class="catagories">
-        <button onclick="tagSelect('fulltime')" id="fulltime"> Full Time </button>
-        <button onclick="tagSelect('parttime')" id="parttime"> Part Time </button>
-        <button onclick="tagSelect('freelance')" id="freelance"> Freelance </button>
-        <button onclick="tagSelect('remote')" id="remote"> Remote </button>
-        <button onclick="tagSelect('manager')" id="manager"> Manager </button>
-        <button onclick="tagSelect('retail')" id="retail"> Retail </button>
-        <button onclick="tagSelect('noexperience')" id="noexperience"> No Experience </button>
-    </div>
+    <div class="filters">
+    <?php
+// Fetch distinct locations and industries
+$locations = [];
+$industries = [];
+
+$locationResult = $conn->query("SELECT DISTINCT location FROM jobs WHERE location IS NOT NULL AND location != ''");
+while ($row = $locationResult->fetch_assoc()) {
+    $locations[] = $row['location'];
+}
+
+$industryResult = $conn->query("SELECT DISTINCT industry FROM jobs WHERE industry IS NOT NULL AND industry != ''");
+while ($row = $industryResult->fetch_assoc()) {
+    $industries[] = $row['industry'];
+}
+?>
+
+<label for="filter-location">Location:</label>
+<select id="filter-location">
+    <option value="">All Locations</option>
+    <?php foreach ($locations as $loc): ?>
+        <option value="<?= htmlspecialchars($loc) ?>"><?= htmlspecialchars($loc) ?></option>
+    <?php endforeach; ?>
+</select>
+
+<label for="filter-industry">Industry:</label>
+<select id="filter-industry">
+    <option value="">All Industries</option>
+    <?php foreach ($industries as $ind): ?>
+        <option value="<?= htmlspecialchars($ind) ?>"><?= htmlspecialchars($ind) ?></option>
+    <?php endforeach; ?>
+</select>
+
+    <label for="sort-by">Sort By:</label>
+    <select id="sort-by">
+        <option value="date">Newest First</option>
+        <option value="title">Title (A-Z)</option>
+    </select>
+</div>
+
 
     <!-- This will be dynamically filled -->
     <div class="card" id="jobResults"></div>
