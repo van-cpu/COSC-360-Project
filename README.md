@@ -71,9 +71,9 @@ Navigation Structure:
 
 ● Profile Page
 
-○ Job Seekers: Edit profile, upload resume, manage applications.
+● Job Seekers: Edit profile, upload resume, manage applications.
 
-○ Employers: Manage company profile, job postings.
+● Employers: Manage company profile, job postings.
 
 ● Admin Panel - Manage platform operations.
 
