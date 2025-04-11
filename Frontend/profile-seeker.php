@@ -70,40 +70,62 @@
                 <button type="submit">Update Profile</button>
             </form>
         </div>
-        <div class="card">
-    </div>
-        <!-- Job Preferences Card -->
-        <div class="card">
-            <h2>Job Preferences</h2>
-            <button onclick="addJobPreference()">+</button>
-            <p>What kind of job preferences do you have?</p>
-            <div id="job-preferences-list"></div>
-        </div>
+          <?PHP        if ($_SESSION['role'] === 'employer') {//is an employer
+  echo '<h1>Current Applicants: </h1>';
 
-        <!-- Experience Card -->
-        <div class="card">
-            <h2>Experience</h2>
-            <button onclick="showExperienceForm()">+</button>
-            <p>What kind of experience do you have?</p>
-            <div id="experience-list"></div>
-        </div>
+  $stmt = $conn->prepare("SELECT users.name, users.email, applications.cover_letter, applications.resume, applications.applied_at, jobs.id, jobs.title, jobs.company, jobs.location 
+  FROM applications 
+  JOIN jobs ON jobs.id = applications.job_id 
+  JOIN users ON users.id = applications.user_id 
+  WHERE jobs.user_id = ?");
 
-        <!-- Skills Card -->
-        <div class="card">
-            <h2>Skills</h2>
-            <button onclick="addSkill()">+</button>
-            <p>What kind of skills do you have?</p>
-            <div id="skills-list"></div>
-        </div>
+  $stmt->bind_param("i", $user_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
-        <!-- Education Card -->
-        <div class="card">
-            <h2>Education</h2>
-            <button onclick="showEducationForm()">+</button>
-            <p>What education do you have?</p>
-            <div id="education-list"></div>
-        </div>
-    </div>
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        echo '<div class="card">';
+        echo '<br><h2>Applicant: ' . htmlspecialchars($row['name']) . '</h2>';
+        echo '<br><p>Email: ' . htmlspecialchars($row['email']) . '</p>';
+        echo '<br><p>Applied for: <strong>' . htmlspecialchars($row['title']) . '</strong> at ' . htmlspecialchars($row['company']) . '</p>';
+        echo '<br><p>Location: ' . htmlspecialchars($row['location']) . '</p>';
+        echo '<br><p>Applied on: ' . htmlspecialchars($row['applied_at']) . '</p>';
+        echo '<br><p>Text: ' . htmlspecialchars($row['cover_letter']) . '</p>';
+
+        echo '</div>';
+      }
+  } else {
+      echo '<p>No applicants yet.</p>';
+  }
+        }else{// is an employee
+            echo '<h1>Current applications: </h1>';
+            $stmt = $conn->prepare("SELECT jobs.id, jobs.title, jobs.company, jobs.location, jobs.job_description 
+            FROM applications JOIN jobs ON jobs.id = applications.job_id 
+            WHERE applications.user_id = ?");
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+
+                        echo '<br><div onclick="window.location.href=\'job-details.php?id=' . $row['id']  . '\'">';                        
+                        echo '<div class="card">';
+                        echo '<h2> Job title: ' . htmlspecialchars($row['title']) ;
+                        echo '<br> <h3> Company: ' . htmlspecialchars($row['company']) ;
+                        echo '<br> <h3> Location: ' . htmlspecialchars($row['location']) ;
+                        echo '<br> <h3> Job Description: ' . htmlspecialchars($row['job_description']) ;
+                        echo '</div>';
+                    }
+            } else {
+                echo '<p>No job listings available.</p>';
+            }
+
+        }
+        
+        ?>
+
 
     <script src="./js/profile-seeker.js"></script>
     <script src="js/common.js"></script>

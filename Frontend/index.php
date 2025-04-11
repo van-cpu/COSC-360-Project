@@ -77,9 +77,7 @@
     </div>
 
 
-    <div class="card">
-        <h1> Extra Resources </h1>
-    </div>
+
 
     <div id="bottomnav">
         <a href="#top">Back to Top</a>

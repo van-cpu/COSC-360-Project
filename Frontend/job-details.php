@@ -82,18 +82,18 @@ $stmt->close();
             <label class="option"><input type="checkbox" name="reportReason" value="other"> Other</label><br>
             <button type="submit" id="submitButton">Submit</button>
         </form>
-        <img src="../PHP/getJobImage.php" alt="Profile Image" id="companyLogo">
+        <img src="../PHP/getJobImage.php" alt="Profile Image" class="clickable-hover" id="companyLogo" onclick="window.location.href='profile-employer.php?id=<?php echo $user_id; ?>'">
         <h2 id="companyName"><?php echo htmlspecialchars($company_name); ?></h2>
         <h1 id="jobTitle"><?php echo htmlspecialchars($job_title); ?></h1>
         <h2 style="color: white;"> Clicks since Posting: <?php echo $click_count ?></h2>
         <div id="innerText" class="textDiv">
             <h2>Job Details</h2>
             <br>
-            <p id="jobLocation"><?php echo htmlspecialchars($job_location); ?></p>
-            <p id="salaryRange"><?php echo htmlspecialchars($salary); ?></p>
-            <p id="jobDescription"><?php echo htmlspecialchars($job_description); ?></p>
-            <p id="reqQual"><?php echo htmlspecialchars($requirements); ?></p>
-            <p id="Bene"><?php echo htmlspecialchars($benefits); ?></p>
+            <p id="jobLocation"><?php echo 'Location: '.htmlspecialchars($job_location); ?></p>
+            <p id="salaryRange"><?php echo 'Salary: '.htmlspecialchars($salary); ?></p>
+            <p id="jobDescription"><?php echo 'Job Description: '. htmlspecialchars($job_description); ?></p>
+            <p id="reqQual"><?php echo 'Requirements: '.htmlspecialchars($requirements); ?></p>
+            <p id="Bene"><?php echo 'Benifits: '.htmlspecialchars($benefits); ?></p>
         </div>
         <div class="textDiv">
             <p id="jobDate">Job listed on: <?php echo htmlspecialchars($posted_at); ?></p>
