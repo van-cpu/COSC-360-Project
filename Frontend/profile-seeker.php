@@ -134,6 +134,14 @@
     
     <?php } else {
 
+    echo"
+        <div class='card'>
+            <h2>Resume</h2>
+            <button onclick='addResume()'>+</button>
+            <p>Please upload your resume</p>
+            <div id='resume-section'></div>
+        </div>";
+
     echo '<h1>Current applications: </h1>';
     $stmt = $conn->prepare("SELECT jobs.id, jobs.title, jobs.company, jobs.location, jobs.job_description 
     FROM applications JOIN jobs ON jobs.id = applications.job_id 
