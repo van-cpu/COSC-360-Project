@@ -20,6 +20,9 @@
         if ($_SESSION['role'] === 'employer') {
             echo '<a href="create-job.php" id="createJob">Create Job</a>';
               
+        }else if ($_SESSION['role'] === 'admin') {
+           // echo '<a href="admin.php" id="adminPanel">Admin Panel</a>';
+              
         }
         }else{
             echo '<a href="login.php" id="loginLink">Login</a>';      
@@ -28,12 +31,13 @@
         
         ?>
 
-        <p> Description of job website</p>
+        <p> Search for jobs, employers and post your job listings!</p>
     </div>
  
     <div class="card">
+    <h1> Popular Jobs </h1>
     <?php
-    $result = $conn->query("SELECT id, title, job_description FROM jobs");
+    $result = $conn->query("SELECT id, title, job_description FROM jobs ORDER BY click_count DESC LIMIT 4");
         if ($result->num_rows > 0) {
             $counter =0;
             while ($row = $result->fetch_assoc()) {
@@ -52,36 +56,28 @@
     </div>
 
     <div class="card">
-        <div class="jobtypes">
-            <p><b> Trending Job Types:</b><a href="job-listings.html"> Freelance </a>
-                <a href="job-listings.html"> Full Time </a>
-                <a href="job-listings.html"> Remote </a>
-                <a href="job-listings.html"> Part Time </a>
-                <a href="job-listings.html"> Manager </a> 
-                <a href="job-listings.html"> No Experience </a>
-                <a href="job-listings.html"> Retail </a><p>
-        </div>
+    <h1> Popular Employers </h1>
+    <?php
+    $result = $conn->query("SELECT id, name, company_name, profile_clicks FROM users WHERE role = 'employer' ORDER BY profile_clicks DESC LIMIT 4");
+        if ($result->num_rows > 0) {
+            $counter =0;
+            while ($row = $result->fetch_assoc()) {
+                if ($counter < 4) {
+                    $counter += 1;
+                    echo '<div class="employercard" onclick="window.location.href=\'profile-employer.php?id=' . $row['id'] . '\'">';
+                    echo '<h2>' . htmlspecialchars($row['name']) . ' - ' . htmlspecialchars($row['company_name']) . '</h2>';
+                    echo '<p>Profile Clicks: ' . htmlspecialchars($row['profile_clicks']) . '</p>';
+                    echo '<button>View Profile</button>';
+                    echo '</div>';
+            }}
+        } else {
+            echo '<p>No job listings available.</p>';
+        }
+        ?>
     </div>
 
-    <div class="card">
-        <h1> Popular Employers </h1>
-        <div class="employercard" onclick="employerClicked('job1')">
-            <h2> Employer  1 </h1> 
-        </div>
-        <div class="employercard" onclick="employerClicked('job1')">
-            <h2> Employer  2 </h1> 
-        </div>
-        <div class="employercard" onclick="employerClicked('job1')">
-            <h2> Employer  3 </h1> 
-        </div>
-        <div class="employercard" onclick="employerClicked('job1')">
-            <h2> Employer  4 </h1> 
-        </div>
-    </div>
 
-    <div class="card">
-        <h1> Extra Resources </h1>
-    </div>
+
 
     <div id="bottomnav">
         <a href="#top">Back to Top</a>

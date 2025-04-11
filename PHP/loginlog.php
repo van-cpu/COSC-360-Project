@@ -8,16 +8,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        $stmt = $conn->prepare("SELECT id, name, password, role FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, name, password, role, status FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($user_id, $name, $hashed_password, $role);
+            $stmt->bind_result($user_id, $name, $hashed_password, $role, $status);
             $stmt->fetch();
 
             if (password_verify($password, $hashed_password)) {
+                if($status == "inactive"){
+                    echo "<script>alert('Login failed, account disbled by admin, please contact admin');
+                     window.location.href = '../Frontend/index.php';</script>";
+                    }else{
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['email'] = $email;
                 $_SESSION['name'] = $name;
@@ -25,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_logged_in'] = true;
                 echo "<script>alert('Login Successful! ".$name."'); window.location.href = '../Frontend/index.php';</script>";
                 exit();
-
+                }
             } else {
                 echo "<script>alert('Wrong password, please try again'); window.location.href = '../Frontend/login.php';</script>";
                 exit();
