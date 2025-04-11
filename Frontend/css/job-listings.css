@@ -9,7 +9,8 @@ body {
     border-radius: 20px;
     margin: auto;
     width: 80%;
-    height: 900px;
+    min-height: 100vh; /* Optional: ensures it fills the viewport if content is short */
+    padding-bottom: 30px; /* Add padding so the last content isn’t cut off */
 }
 
 .search {
@@ -142,3 +143,4 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease-in-out
+}
