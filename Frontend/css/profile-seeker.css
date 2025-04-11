@@ -53,6 +53,11 @@ h1 {
     margin-bottom: 15px;
 }
 
+.card h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
 .card button{
     display: inline;
     margin-right: 3%;
