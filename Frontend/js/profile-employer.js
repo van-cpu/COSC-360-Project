@@ -64,6 +64,7 @@ function validateCompanyInfo() {
     return false;
 }
 
+
 // Job Postings
 function addJobPosting() {
     jobPostingCount++;

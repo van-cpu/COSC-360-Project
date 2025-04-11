@@ -24,6 +24,7 @@ body {
     padding: 20px;
 }
 
+
 /* Main Heading */
 h1 {
     text-align: center;
@@ -54,6 +55,9 @@ h3 {
     color: #ffffff;
     margin-bottom: 15px;
 }
+.card h3 {
+    color: #ffffff;
+}
 .card button{
     display: inline;
 }
@@ -62,6 +66,7 @@ h3 {
     display: inline;
     color: white;
 }
+
 
 /* Form Groups */
 .form-group {
